@@ -1,0 +1,7 @@
+<% return unless widget.item_display_field?(Product::ItemDisplayField::PRODUCT_DETAIL) %>
+<div class="gallery_product__section gallery_product__detail">
+  <%= link_to product.url, class: 'gallery_product__section_link', data: {link_target: 'window'} do %>
+    <div class="gallery_product__detail_name"><%= product.name %></div>
+    <div class="gallery_product__detail_price"><%= product.final_price.format(symbol: 'won') %></div>
+  <% end %>
+</div>

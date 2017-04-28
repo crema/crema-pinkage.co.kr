@@ -1,0 +1,144 @@
+@import "../../lib/common";
+
+$border_color: #d9d9d9;
+
+.gallery_products_grid__item {
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.gallery_product__image_box {
+  font-size: 0;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.gallery_product__sections {
+  border-top: 1px solid $border_color;
+  padding: 0 5px;
+  font-size: 11px;
+}
+
+.gallery_product__section {
+  border-top: 1px solid $border_color;
+  padding: 10px 5px;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.gallery_product__detail {
+  padding: 9px 2px;
+  margin: 0 3px;
+  font-size: 12px;
+}
+
+.gallery_product__section_link {
+  color: #6b6b6b;
+  display: block;
+}
+
+.gallery_product__detail_name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gallery_product__detail_price {
+  margin-top: 3px;
+  color: #b4b4b4;
+}
+
+.gallery_product__review_summary {
+  position: relative;
+  border-top: 0;
+  padding-top: 0;
+  padding-bottom: 15px;
+}
+
+.gallery_product__review_summary_average_score_title {
+  color: #cccccc;
+  font-size: 9px;
+  margin-left: 2px;
+}
+
+.gallery_product__review_summary_average_score {
+  font-size: 27px;
+  line-height: 18px;
+  color: #a5a5a5;
+}
+
+.gallery_product__review_summary_reviews_count {
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  top: 22%;
+  margin-top: -6px;
+  color: #333333;
+}
+
+.gallery_product__review_summary_reviews_count_title {
+  color: #a5a5a5;
+}
+
+.gallery_product__review_inner {
+  position: relative;
+  padding-left: 45px;
+}
+
+.gallery_product__review_image_box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0;
+}
+
+.gallery_product__review_image {
+  width: 36px;
+  height: 36px;
+}
+
+.gallery_product__review_message {
+  padding: 2px 0;
+  height: 36px;
+  font-size: 12px;
+  line-height: 16px;
+  overflow: hidden;
+  color: #b3b3b3;
+}
+
+.gallery_product__category_name {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gallery_product__category_description {
+  font-size: 10px;
+  margin-top: 3px;
+  color: #cccccc;
+}
+
+.gallery_grid__3_columns_container {
+  .gallery_product__section {
+    padding: 10px 2px;
+  }
+
+  .gallery_product__review_inner {
+    padding-left: 41px;
+  }
+
+  .gallery_product__review_message {
+    font-size: 11px;
+  }
+
+  .gallery_product__review_summary_reviews_count {
+    max-width: 53px;
+    text-align: right;
+    top: 33%;
+  }
+}
+
