@@ -1,3 +1,44 @@
-.gallery--padding {
+@import "compass/css3/border-radius";
+
+.gallery--no_padding {
   padding: 0;
+}
+
+.gallery--narrow_padding {
+  padding: 0 2px;
+}
+
+.grid__item--narrow_padding {
+  margin: 10px 2px 0 2px;
+}
+
+.gallery-item .box-default .section.section-photo img.review-img--rect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include border-radius(0);
+}
+
+.section-photo {
+  background: white;
+  position: relative;
+  padding-top: 100%;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.gallery-item .box-default {
+  background: white;
+  border: 0;
+  @include border-radius(0);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.gallery-item.review-gallery-item .section.section-review.section-review--no_border {
+  border-bottom: 0;
 }

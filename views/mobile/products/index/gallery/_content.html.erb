@@ -1,6 +1,6 @@
 <% if products.present? %>
   <% mobile_posts_per_line = widget.mobile_posts_per_line %>
-  <%= content_tag :ul, class: "gallery grid gallery_grid__#{mobile_posts_per_line}_columns_container gallery--padding", data: {
+  <%= content_tag :ul, class: "gallery grid gallery_grid__#{mobile_posts_per_line}_columns_container gallery--no_padding", data: {
       columns_count: mobile_posts_per_line,
       column_class: 'grid__col',
       item_class: 'grid__item',
