@@ -1,0 +1,11 @@
+<div class="frame__sub_frame review_list__comment_section">
+  <ul>
+    <%= render partial: 'reviews/list/comment', collection: review.comments %>
+  </ul>
+</div>
+
+<% if brand.review_enable_user_comments %>
+  <div class="frame__sub_frame review_list__new_comment_section">
+    <%= render 'reviews/list/new_comments', review: review %>
+  </div>
+<% end %>

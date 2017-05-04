@@ -1,0 +1,124 @@
+<%
+hide_image = false if !local_assigns[:hide_image]
+display_user_grade = @brand.review_author_display_type == ReviewAuthorDisplayType::USER_GRADE && @brand.brand_user_grade_display_format_in_reviews_index.present?
+
+review_list_status = widget.message_initial_rows == ReviewInitialRows::ALL ? :expanded : :collapsed
+if widget.review_message_all_collapsed?
+  collapsed_message = widget.collapsed_title
+  collapsed_message_style = nil
+else
+  collapsed_message = review.message_with_prefix.html
+  message_initial_rows = widget.message_initial_rows == 0 ? 3 : widget.message_initial_rows
+  collapsed_message_style = "max-height: #{message_initial_rows * 18}px"
+end
+%>
+<%= content_tag_for(
+  :li,
+  review,
+  class: "review_list review_list--#{review_list_status} review_list--pinkage",
+  data: {message_initial_rows: widget.message_initial_rows}
+) do %>
+  <% if brand.review_show_score && review.score %>
+    <%= content_tag :div, class: "review_score" do %>
+      <div class="review_score__author_name"><%= review.user_display_name %></div>
+      <div class="review_score__star_rating">
+        <%= render 'reviews/star_rating', score: review.score %>
+      </div>
+      <div class="review_score__right">
+        <div class="review_score__right_item review_score__created_at"><%= review.created_at.strftime("%Y.%m.%d") %></div>
+        <%= link_to(
+          t('reviews.edit_review'),
+          edit_mobile_review_path(review),
+          data: {link_target: 'window'},
+          class: 'review_score__right_item review_score__edit'
+        ) if review.editable?(current_user) %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="review_list__content_section review_list__content_section--padding">
+    <%= render('reviews/list/product', review: review) if widget.widget_type == WidgetType::REVIEWS %>
+    <div class="review_list__content_wrap">
+      <div class="review_list__content review_list__content--collapsed">
+        <a class="review_list__content_link review_list__expand_link">
+          <%= content_tag :div, class: 'review_list__message review_list__message--no_padding', style: collapsed_message_style do %>
+            <%= collapsed_message %>
+          <% end %>
+          <%= content_tag(
+            :div,
+            "...#{t('reviews.see_more_simple')}",
+            class: 'review_list__see_more review_list__see_more--pinkage'
+          ) %>
+        </a>
+        <% if review.photo? %>
+          <% if widget.show_image_when_collapsed %>
+            <%= render 'reviews/list/images', review: review %>
+          <% else %>
+            <%= content_tag(
+              :div,
+              t('reviews.images_count', count: review.images_count),
+              class: 'review_list__images_count'
+            ) %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="review_list__content review_list__content--expanded">
+        <%= render 'reviews/options', review: review, klass: 'review_list__options review-options--pinkage' %>
+        <div class="review_list__message">
+          <%= render 'reviews/message', review: review %>
+        </div>
+        <%= render 'reviews/list/images', review: review %>
+      </div>
+    </div>
+
+    <%= render 'reviews/tag', review: review %>
+  </div>
+
+  <div class="review_list__like_section">
+    <div class="review_list__like_action">
+      <%
+      likes = likes?(review)
+      like = get_like(review)
+      %>
+      <div class="review_like_action">
+        <%= content_tag :div, class: "like-action #{(like.score > 0 ? 'liked' : 'unliked') if likes}", data: {url: like_mobile_review_path(review)} do %>
+          <div class="review_like_action__label">
+            <span>좋아요 <%= review.total_score %>개</span>
+            <span class="review_like_action__comments_count">댓글 <%= review.comments_count %>개</span>
+          </div>
+          <div class="likable">
+            <a class="link-like review_link_action__like_button">
+              <i class="fa fa-heart-o review_link_action__like_icon"></i>
+              <i class="fa fa-heart review_link_action__liked_icon"></i>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="review_list__comments_icon">
+      <% comments_tab_content = capture do %>
+        <%= image_tag(manual_asset_url('widgets/comment.png'), class: 'review_list__comments_tab_icon') %>
+      <% end %>
+
+      <% if brand.review_enable_user_comments || review.comments_count > 0 %>
+        <%= content_tag(
+          :button,
+          class: 'review_list__comments_tab_expand_button',
+          data: {url: expand_comments_mobile_review_path(review)}
+        ) do %>
+          <%= comments_tab_content %>
+        <% end %>
+      <% else %>
+        <%= comments_tab_content %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="review_list__comments comment-container">
+  </div>
+
+  <div class="review_list__collapse_link_container">
+    <a class="review_list__collapse_link">
+      <%= image_tag manual_asset_url('widgets/collapse.png'), class: 'review_list__collapse_link_icon' %>
+    </a>
+  </div>
+<% end %>
