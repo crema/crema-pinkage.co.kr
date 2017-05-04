@@ -49,7 +49,7 @@
               </div>
               <div class="product-info-feedbacks">
                 <span class="reviews-count"><%= content_tag :span, t('reviews.label_review'), class: 'gallery-item__product_info_feedbacks_title' %><strong><%= format_reviews_count(review.product.meta_reviews_count) %></span></strong>
-                <span class="display-score"><%= content_tag :span, t('reviews.label_score'), class: 'gallery-item__product_info_feedbacks_title' %><strong><%= review.product.display_score %></strong></span>
+                <span><%= content_tag :span, t('reviews.label_score'), class: 'gallery-item__product_info_feedbacks_title' %><strong><%= review.product.display_score %></strong></span>
               </div>
             </div>
           </div>
