@@ -1,0 +1,25 @@
+<%= content_for :content do %>
+  <% if widget.no_item_action?(items_count: review_images.count {|i| i != :placeholder}) %>
+    <% if widget.no_item_action_type == 'image' %>
+      <div class="products_reviews__no_item_image_box">
+        <%= image_tag(widget.no_item_image_url, class: 'products_reviews__no_item_image') %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="photo_thumbnail_box">
+      <div class="photo_thumbnail_box__title">
+        <%= widget.title.html_safe %>
+      </div>
+      <div class="products_reviews_photo_thumbnail__summary">
+        <span>전체 리뷰 <strong class="products_reviews_photo_thumbnail__value"><%= number_with_delimiter(product.reviews_count) %></strong>개</span>
+        <span class="products_reviews_photo_thumbnail__divider">|</span>
+        <span>포토 리뷰 <strong class="products_reviews_photo_thumbnail__value"><%= number_with_delimiter(product.photo_reviews_count) %></strong>개</span>
+        <span class="products_reviews_photo_thumbnail__divider">|</span>
+        <span>고객 만족도 <strong class="products_reviews_photo_thumbnail__value"><%= product.display_score %></strong></span>
+      </div>
+      <ul class="photo_thumbnail_box__photos">
+        <%= widget.render_review_images(self, review_images) %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

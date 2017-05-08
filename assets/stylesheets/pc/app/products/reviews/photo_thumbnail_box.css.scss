@@ -1,0 +1,69 @@
+@import "../../../lib/common";
+
+.photo_thumbnail_box {
+  border: 1px solid #ddd;
+}
+
+.photo_thumbnail_box__title {
+  color: #5d5d5d;
+  white-space: nowrap;
+}
+
+.photo_thumbnail_box__photos {
+  padding: 5px;
+  font-size: 0;
+  margin-left: -4px;
+  @include clearfix;
+
+  li {
+    width: 57px;
+    height: 57px;
+    margin-left: 4px;
+    margin-bottom: 4px;
+    float: left;
+  }
+}
+
+.photo_thumbnail_box {
+  border: 0;
+}
+
+.products_reviews_photo_thumbnail__summary {
+  display: none;
+}
+
+// 풀커스텀을 적용하려는 위젯에 커스텀 CSS로 넣을 것.
+// .products_reviews_photo_thumbnail__summary {
+//   display: block;
+//   text-align: center;
+//   font-size: 14px;
+//   margin: 15px;
+// }
+
+// .products_reviews_photo_thumbnail__divider {
+//   margin-right: 7px;
+// }
+
+// .products_reviews_photo_thumbnail__value {
+//   margin-left: 4px;
+// }
+
+// .photo_thumbnail_box__title {
+//   display: none;
+// }
+
+// .photo-review-thumbnail .review-image {
+//   opacity: 0.4;
+//   -webkit-transition: all 0.4s ease;
+//   -moz-transition: all 0.4s ease;
+//   -o-transition: all 0.4s ease;
+//   transition: all 0.4s ease;
+
+//   &:hover {
+//     opacity: 1;
+//   }
+// }
+
+// .photo-review-thumbnail .grayscale {
+//   display: none;
+// }
