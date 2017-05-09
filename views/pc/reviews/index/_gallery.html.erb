@@ -1,0 +1,98 @@
+<% title widget.name %>
+<% content_for :content do %>
+  <%= content_tag :div, class: "widget widget-reviews pagination-list" do %>
+    <div>
+      <div class="reviews_index_gallery__menu">
+        <div class="reviews_index_gallery__search_container">
+          <a class="top_menu__submit"><span class="sprites-search"></span></a>
+          <%= form_tag url_for(params.except(:page).merge(aloading: '.page')), class: 'menu-search', method: :get, remote: true do %>
+            <%= text_field_tag('query', @query, placeholder: '원하는 단어를 검색하세요', autocomplete: 'off', class: 'top_menu__query') %>
+          <% end %>
+          <%= link_to url_for(params.except(:query, :page).merge(aloading: '.page')), class: "top_menu__remove_query #{'top_menu__remove_query--has_query' if @query.present?}", remote: true do %>
+            <span class="fa fa-times-circle"></span>
+          <% end %>
+        </div>
+        <ul class="reviews_index_gallery__filters_container">
+          <li class="reviews_index_gallery__sort_container">
+            <%= select_tag(
+              :sort,
+              options_for_select(@brand.review_sort_types(@group_by).map {|s| [ReviewSort.t(s), s]}, @review_sort),
+              class: 'select2',
+              data: {url: ajax_path(aloading: '.page', except: [:sort])}
+            ) %>
+          </li>
+          <li class="reviews_index_gallery__categories_container">
+            <%= select_tag(
+              :category,
+              options_for_select(categories_collection, @category.try(:id)),
+              prompt: '카테고리별 리뷰 보기',
+              class: 'select2',
+              data: {url: ajax_path(aloading: '.page', except: [:category_id])}
+            ) %>
+          </li>
+        </ul>
+      </div>
+
+      <% if brand_notices.present? %>
+        <div class="reviews_index_gallery__notice_container" id="review-notice">
+          <ul class="reviews_index_gallery__notices">
+            <% brand_notices.each_with_index do |brand_notice, index| %>
+              <%= content_tag_for :li, brand_notice, class: "reviews_index_gallery__notice #{'reviews_index_gallery__notice--last' if index == 1} #{'hidden' if index >= 2} #{'selected' if brand_notice.expanded?}" do %>
+                <a class="link-expand-review-notice reviews_index_gallery__expand_link">
+                  <div class="reviews_index_gallery__title">
+                    <%= brand_notice.title %>
+                  </div>
+                  <div class="reviews_index_gallery__date">
+                    <%= brand_notice.created_at.strftime("%Y-%m-%d") %><br />
+                  </div>
+                </a>
+                <%= content_tag :div, class: 'brand_notice__content brand-notice-content review-contents-style', style: ('display: none;' if !brand_notice.expanded?) do %>
+                  <div class="brand_notice__content_inner"><%=raw brand_notice.message %></div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </ul>
+          <div class="review-notice-more">
+            <a class="mall-link-color">
+              <span class="review-more-notice-count">
+                <% if brand_notices.count > 2 %>
+                  <%= brand_notices.count - 2 %>
+                  <%= t('reviews.see_more_notices') %>
+                <% end %>
+              </span>
+              <span class="review-more-notice-close" style="display: none;">
+                <%= t('generals.label_fold') %>
+              </span>
+            </a>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="page">
+        <% if @reviews.empty? %>
+          <div class="reviews_index_gallery__no_data">
+            <%= render 'common/reviews/no_reviews' %>
+          </div>
+        <% else %>
+          <div class="reviews_index_gallery__reviews_contents">
+            <ul class="reviews_index_gallery__reviews">
+              <%= render partial: 'reviews/review_thumbnail', collection: @reviews, as: 'review' %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="reviews_index_gallery__footer">
+      <% if @reviews.total_pages > 1 %>
+        <%
+        args = {
+          window: 3,
+          remote: true,
+          params: {aloading: '.page'}
+        }
+        %>
+        <%= paginate(@reviews, args) %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
