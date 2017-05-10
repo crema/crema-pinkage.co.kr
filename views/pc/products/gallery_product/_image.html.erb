@@ -1,0 +1,30 @@
+<%
+image_id = "product_img_#{product.id}"
+width, height = product.image.dimension
+
+# TODO: gif image 지원해서 use_original_product_image 삭제되면 삭제할것
+image_source_url = product.image_source_url
+if widget.use_original_product_image && image_source_url.present?
+  product_image_url = image_source_url
+else
+  product_image_url = product.image_url
+end
+%>
+<div class="gallery_product__image_box">
+  <% has_size = width && height ? true : false %>
+  <%= link_to product.url, data: {link_target: 'window'} do %>
+    <%= image_tag(
+      product_image_url,
+      class: 'gallery_product__image smooth',
+      id: image_id,
+      data: {
+        no_size: !has_size
+      }
+    ) %>
+    <%= render 'shared/fimg_script', image_id: image_id, width: width, height: height, widget: widget if has_size %>
+    <div class="gallery_product__detail">
+      <div class="gallery_product__detail_name"><%= product.name %></div>
+      <div class="gallery_product__detail_price"><%= product.final_price.format(symbol: 'won') %></div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<div class="products_index_gallery__content">
+  <%= render 'products/index/gallery/content' %>
+</div>
+
+<div class="products_index_gallery__foot">
+  <% if products.total_pages > 1 %>
+    <%
+    args = {
+      window: 3,
+      remote: true,
+      params: {aloading: '.page'}
+    }
+    %>
+    <%= paginate(products, args) %>
+  <% end %>
+</div>

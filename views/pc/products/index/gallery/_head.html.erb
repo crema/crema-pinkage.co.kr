@@ -1,0 +1,45 @@
+<% return if widget.list_display_fields.zero? %>
+<div class="products_index_gallery__head_default">
+  <ul class="products_index_gallery__filters_container">
+    <li class="products_index_gallery__filter products_index_gallery__sort_container">
+      <%= select_tag(
+        :sort,
+        options_for_select(Product::SortType.collection(sort_types), sort),
+        class: 'select2 minimal_select search_trigger search_field',
+        data: {
+          url: ajax_path(aloading: '.page', except: [:sort]),
+          dropdown_auto_width: true
+        }
+      ) %>
+    </li>
+    <li class="products_index_gallery__filter products_index_gallery__categories_container">
+      <%= select_tag(
+        :category,
+        options_for_select(categories_collection, @category.try(:id)),
+        prompt: '카테고리별 리뷰 보기',
+        class: 'select2',
+        data: {url: ajax_path(aloading: '.page', except: [:category_id])}
+      ) %>
+    </li>
+    <li class="products_index_gallery__filter products_index_gallery__price_range_container">
+      <%= select_tag(
+        :price_range,
+        options_for_select(price_range_filters, price_range),
+        prompt: t('products.index.select_price_range'),
+        class: 'select2 minimal_select search_trigger search_field products_index_gallery__select_price_range',
+        data: {
+          dropdown_auto_width: true
+        }
+      ) %>
+    </li>
+    <li class="products_index_gallery__filter products_index_gallery__search_container">
+      <a class="top_menu__submit"><span class="sprites-search"></span></a>
+      <%= form_tag url_for(params.except(:page).merge(aloading: '.page')), class: 'menu-search', method: :get, remote: true do %>
+        <%= text_field_tag('query', query, placeholder: '원하는 단어를 검색하세요', autocomplete: 'off', class: 'top_menu__query') %>
+      <% end %>
+      <%= link_to url_for(params.except(:query, :page).merge(aloading: '.page')), class: "top_menu__remove_query #{'top_menu__remove_query--has_query' if @query.present?}", remote: true do %>
+        <span class="fa fa-times-circle"></span>
+      <% end %>
+    </lib>
+  </ul>
+</div>
