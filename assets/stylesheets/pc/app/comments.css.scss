@@ -1,0 +1,164 @@
+@import "../lib/arrow";
+@import "../lib/common";
+@import "compass/css3/opacity";
+@import "compass/css3/transition";
+
+.comments-container {
+  position: relative;
+  border: 1px solid #e2e2e2;
+  margin-top: 7px;
+  margin-right: 30px;
+  padding: 10px 15px;
+  text-align: left;
+  max-width: 800px;
+
+  .arrow-top:before {
+    @include arrow-top(8px, transparent, #e2e2e2);
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    content: '';
+  }
+
+  .arrow-top:after {
+    @include arrow-top(7px, transparent, white);
+    position: absolute;
+    top: -7px;
+    left: 21px;
+    content: '';
+  }
+
+  ul {
+    li {
+      display: block;
+      border-top: 1px solid #f6f6f6;
+      color: #333333;
+      overflow: hidden;
+      position: relative;
+
+      .inner {
+        padding: 10px 0;
+      }
+
+      &:first-child {
+        border-top: none;
+      }
+
+      .lpane {
+        float: left;
+        font-weight: bold;
+        @include font-default;
+        padding: 0;
+        width: 62px;
+        margin-left: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .rpane {
+        float: none;
+        padding-left: 72px;
+      }
+
+      .error-message {
+        color: red;
+      }
+
+      .message {
+        word-wrap: break-word;
+        position: relative;
+      }
+
+      .comment-message-edit {
+        display: none;
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        border: 1px solid #aaa;
+        width: 80%;
+      }
+
+      &.editing {
+        .comment-message-edit {
+          display: block;
+        }
+
+        span {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .new-comments {
+    border: 1px solid #e2e2e2;
+    padding: 4px 65px 4px 12px;
+    position: relative;
+
+    .btn {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    input {
+      font-size: 13px;
+      height: 24px;
+      line-height: 24px;
+
+      &.btn {
+        line-height: 24px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  ul li.hover .edit-comment-container {
+    @include opacity(1);
+  }
+}
+
+.edit-comment-container {
+  position: absolute;
+  top: 6px;
+  right: 3px;
+  @include opacity(0);
+  @include transition(opacity 0.2s);
+}
+
+.comment__inner {
+  position: relative;
+  padding: 10px 15px !important;
+}
+
+.comment__rpane {
+  padding-left: 110px !important;
+  padding-right: 80px;
+  color: #8D8D8D;
+}
+
+.comment__created_at {
+  position: absolute;
+  top: 6px;
+  right: 15px;
+  color: #A5A5A5;
+}
+
+.comments__new_comment {
+  margin-top: 10px;
+}
+
+.comments__submit {
+  border: 0;
+  border-left: 1px solid #dadada;
+  line-height: 32px;
+  top: 0 !important;
+  right: 0 !important;
+  width: 60px;
+  color: #A5A5A5;
+}

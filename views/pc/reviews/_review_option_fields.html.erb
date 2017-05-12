@@ -1,0 +1,45 @@
+<% review_option_types = brand.visible_options %>
+<% if !review_option_types.empty? %>
+  <% review = f.object %>
+  <div class="form_review__review_option_fields">
+    <% review_option_types.each_with_index do |option_type, i| %>
+      <% option = review.option(option_type.id) %>
+      <%= f.fields_for :options, option do |r| %>
+        <%= content_tag :div, class: "form_review__review_option_field #{'first' if i == 0}" do %>
+          <%= r.hidden_field :review_option_type_id %>
+          <%= content_tag :div, class: 'form_review__review_option_field_title', title: option_type.name do %>
+            <%= option_type.name %> <%= "(#{option_type.unit})" if option_type.field_type == ReviewOptionFieldType::NUMBER && !option_type.unit.blank? %> <%= '*' if option_type.required %> :
+          <% end %>
+          <div class="form_review__review_option_field_content">
+            <% case option_type.field_type %>
+            <% when ReviewOptionFieldType::NUMBER %>
+              <%= r.text_field :value, class: "form_review__review_option_field_value form_review__review_option_field_value--number #{'required' if option_type.required}", data: {message: option_type.validate_message}, validate: false %>
+            <% when ReviewOptionFieldType::SELECT %>
+              <% if option_type.options %>
+                <%= r.select :value, option_type.option_values.split(',').collect {|o| [o, o]}, {include_blank: ''}, class: "form_review__review_option_field_value select2 #{'required' if option_type.required}", data: {message: option_type.validate_message}, validate: false %>
+              <% else %>
+                <%= r.text_field :value, class: "form_review__review_option_field_value #{'required' if option_type.required}", data: {message: option_type.validate_message}, validate: false %>
+              <% end %>
+            <% else %>
+              <%= r.text_field :value, class: "form_review__review_option_field_value #{'required' if option_type.required}", data: {message: option_type.validate_message}, validate: false %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if review.sub_order && review.sub_order.product_options.present? %>
+      <div class="product_options">
+        <div class="product_options__title"><%= t('review_options.title') %></div>
+        <div class="product_options__contents">
+          <% review.sub_order.product_options.each do |key, value| %>
+            <div class="product_options__content">
+              <span class='product_options__key'><%= key %>:</span>
+              <span class='product_options__value'><%= value %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <%= content_tag(:div, nil, class: 'divider') if local_assigns[:divider] %>
+  </div>
+<% end %>

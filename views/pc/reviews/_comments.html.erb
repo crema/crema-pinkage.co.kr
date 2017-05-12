@@ -1,0 +1,22 @@
+<% if @brand.review_enable_user_comments || review.comments_count > 0 %>
+  <%= content_tag :div, class: "comments-container ie-opacity-fix #{'hidden' if !allow_comment? && review.comments_count == 0} products_reviews_list_review__comments_container" do %>
+    <ul>
+      <%= render review.comments if review.comments_count > 0 %>
+    </ul>
+    <% if @brand.review_enable_user_comments && allow_comment? %>
+      <div class="new-comments ie-opacity-fix comments__new_comment">
+        <%= form_for Comment.new, url: comments_path, validate: true, remote: true, data: {login_required: true} do |f| %>
+          <%= f.text_field :message, placeholder: t('comments.attributes.message.placeholder'), class: 'input-block', data: {login_required: true} %>
+          <%= f.hidden_field :review_id, value: review.id %>
+          <%= content_tag :button, 'OK', class: 'btn btn-white ie-opacity-fix comments__submit', type: 'submit' %>
+          <input type="hidden" name="tracking_id">
+          <% if current_user %>
+            <script class="blueprint" type="text/x-jquery-tmpl">
+              <%= render "comments/comment", comment: Comment.template(current_user, review) %>
+            </script>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

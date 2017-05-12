@@ -1,0 +1,70 @@
+<div>
+  <% review = new_review(review_source: WrittenSource::BRAND_PC_PRODUCT) if !review %>
+  <%= content_tag :div, nil, id: 'data', data: {
+    allow_multiple_reviews_per_product: @brand.review_allow_multiple_reviews_per_product
+  } %>
+  <%= form_for review, url: review.new_record? ? post_products_path(widget_id: widget.id) : review_path(review, widget_id: widget.id, group: @group_by),
+      html: {
+        multipart: true,
+        autocomplete: 'off',
+        class: 'form_review',
+        method: review.new_record? ? 'post' : 'patch'
+      },
+      remote: true,
+      validate: true,
+      data: {
+        login_required: !@brand.review_enable_nonmember_review?,
+        review_message_default: @brand.review_message_default,
+        already_posted: review.duplicate? ? t('reviews.form.already_posted') : nil,
+        alert_requirement: @brand.review_alert_mileage_requirement_before_submit,
+        disable_save_requirement: @brand.disable_review_with_insufficient_review_length,
+        not_creatable_reason: (review_not_creatable_reason(product) if review.new_record?)
+      } do |f| %>
+    <%= hidden_field_tag :thumbnail_summary, params[:thumbnail_summary] %>
+    <div class="form_review__message_field limit-count-container">
+      <%= render 'reviews/review_option_fields', f: f %>
+      <%= f.text_area(
+        :message,
+        class: "form_review__textarea input-block autogrow count-limit #{review.new_record? ? 'new-review-form' : 'edit-review-form'}",
+        placeholder: (@brand.review_message_placeholder if @brand.review_default_message_type == ReviewDefaultMessageType::PLACEHOLDER),
+        maxlength: Settings.max_review_length,
+        col: 5,
+        cols: 5000, # HACK - IE8 textarea scroll bug
+        data: {
+          login_required: !@brand.review_enable_nonmember_review?,
+          up_counter: true,
+          minimum_message_length: @brand.min_review_length_to_get_mileage,
+          minimum_message_length_warning: t('reviews.form.minimum_message_length_warning', length: @brand.min_review_length_to_get_mileage),
+          minimum_message_length_error: t('reviews.form.minimum_message_length_error', length: @brand.min_review_length_to_get_mileage)
+        }) %>
+      <div class='limit-counter'>0</div>
+      <div class="review-input-photos form_review__input_photos">
+        <div class="input-button review-photos">
+          <%= render 'common/reviews/image_fields', review: review, f: f %>
+        </div>
+      </div>
+    </div>
+    <div class="form_review__input_area_container">
+      <div class="form_review__add_image_container field-box add-image-container">
+        <%= content_tag :div, '이미지 업로드', class: 'form_review__add_image_description', data: {org_text: t('products.reviews.add_photo')} %>
+      </div>
+      <div class="form_review__field_box_continer">
+        <div class="form_review__score_container">
+          <%= f.select :score, ReviewScore.values.collect {|score| [ReviewScore.t(score), score]}, {}, {class: 'select-rating'} %>
+        </div>
+      </div>
+      <%= f.hidden_field :product_id %>
+      <%= f.hidden_field :review_source %>
+      <%= f.hidden_field :sub_order_id %>
+      <%= f.hidden_field :position %>
+      <%= content_tag :button, class: 'form_review__submit hoverable', type: 'submit', data: {disable_with: t('saving')} do %>
+        <span>
+          <%= review.new_record? ? t('reviews.post_review') : t('reviews.edit_review') %>
+        </span>
+      <% end %>
+    </div>
+    <script type="text/x-jquery-tmpl" class="new-image-field">
+      <%= render('common/reviews/image_field', f: f, template: true, review: review) %>
+    </script>
+  <% end %>
+</div>
