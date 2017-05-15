@@ -1,0 +1,54 @@
+@import "../../lib/common";
+
+.review_action_likes__like {
+  @include clearfix;
+  float: left;
+}
+
+.review_action_likes__like_icon {
+  float: left;
+}
+
+.review_action_likes__like_text {
+  float: left;
+  margin-left: 5px;
+}
+
+.review_action_likes__like_link {
+  font-size: 18px;
+}
+
+.review_action_likes__like_link--liked {
+  color: #A33E3A;
+  display: none !important;
+}
+
+.review_action_likes__comment_info {
+  display: inline-block;
+  float: left;
+  margin-left: 12px;
+}
+
+.review_action_likes__comments_count {
+  margin-left: 5px;
+}
+
+.like-action {
+  @include clearfix;
+}
+
+.like-action.liked {
+  .link-like {
+    background: white;
+    border-color: white;
+    color: #A33E3A;
+  }
+
+  .review_action_likes__like_link--like {
+    display: none !important;
+  }
+
+  .review_action_likes__like_link--liked {
+    display: block !important;
+  }
+}

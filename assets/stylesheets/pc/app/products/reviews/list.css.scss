@@ -202,65 +202,14 @@
   font-size: 13px;
 }
 
-.products_reviews_list_review__review_content_inner {
-}
-
-.products_reviews_list_review__message {
-
-}
-
 .products_reviews_list_review__review_message {
   max-height: 105px;
 }
 
-.products_reviews_list_review__review_message--collapsed {
-}
-
-.products_reviews_list_review__review_message--collapsed5 {
-}
-
-.products_reviews_list_review__see_more {
-  
-}
-
-
-.products_reviews_list_review__actions_container {
+.review_action_likes__actions_container {
   line-height: 30px;
   text-align: left;
   @include clearfix;
-}
-
-.products_reviews_list_review__like {
-  @include clearfix;
-  float: left;
-}
-
-.products_reviews_list_review__like_icon {
-  float: left;
-}
-
-.products_reviews_list_review__like_text {
-  float: left;
-  margin-left: 5px;
-}
-
-.products_reviews_list_review__like_link {
-  font-size: 18px;
-}
-
-.products_reviews_list_review__like_link--liked {
-  color: #A33E3A;
-  display: none !important;
-}
-
-.products_reviews_list_review__comment_info {
-  display: inline-block;
-  float: left;
-  margin-left: 12px;
-}
-
-.products_reviews_list_review__comments_count {
-  margin-left: 5px;
 }
 
 .product_reviews_list {
@@ -284,26 +233,6 @@
     border: 0;
     border-top: 1px solid #e2e2e2;
     padding: 10px 0;
-  }
-
-  .like-action {
-    @include clearfix;
-  }
-
-  .like-action.liked {
-    .link-like {
-      background: white;
-      border-color: white;
-      color: #A33E3A;
-    }
-
-    .products_reviews_list_review__like_link--like {
-      display: none !important;
-    }
-
-    .products_reviews_list_review__like_link--liked {
-      display: block !important;
-    }
   }
 }
 
