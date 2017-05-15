@@ -1,0 +1,12 @@
+<div class="gallery_product__section gallery_product__review">
+  <%= content_tag :a, class: 'link-fullscreen-popup', data: {url: review_path(review)} do %>
+    <div class="gallery_product__review_inner">
+      <div class="gallery_product__review_image_box">
+        <%= image_tag review.photo? ? review.image1_url(:thumbnail) : manual_asset_url('thumbnails/review/text_review_v1.png'), class: 'gallery_product__review_image smooth review-image' %>
+      </div>
+      <div class="gallery_product__review_message">
+        <%= review.message_without_tag.limit(max_bytes_per_line: 106, max_lines: 1, flatten: true).html %>
+      </div>
+    </div>
+  <% end %>
+</div>

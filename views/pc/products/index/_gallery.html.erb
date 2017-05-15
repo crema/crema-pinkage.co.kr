@@ -1,0 +1,19 @@
+<% title widget.name %>
+<% content_for :content do %>
+  <% if no_item_action %>
+    <% if widget.no_item_action_type == 'image' %>
+      <div class="products_index_gallery__no_item_image_box">
+        <%= image_tag(widget.no_item_image_url, class: 'products_index_gallery__no_item_image') %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="widget products_index_gallery page">
+      <%= content_tag :div, class: 'products_index_gallery__head', data: {search_url: ajax_path(aloading: true, atarget: '.products_index_gallery__body', except: [:category_id, :sort, :query, :page])} do %>
+        <%= render 'products/index/gallery/head' %>
+      <% end %>
+      <div class="products_index_gallery__body">
+        <%= render 'products/index/gallery/body' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

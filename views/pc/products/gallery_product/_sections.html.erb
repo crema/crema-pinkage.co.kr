@@ -1,0 +1,5 @@
+<% return unless widget.sections?(product: product) %>
+<div class="gallery_product__sections">
+  <%= render 'products/gallery_product/review_summary', product: product %>
+  <%= render 'products/gallery_product/reviews', product: product %>
+</div>

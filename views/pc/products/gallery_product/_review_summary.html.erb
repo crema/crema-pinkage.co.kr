@@ -1,0 +1,12 @@
+<% return unless widget.item_display_field?(Product::ItemDisplayField::REVIEW_SUMMARY) %>
+<% reviews_count = product.meta_reviews_count %>
+<% return if reviews_count.zero? %>
+<div class="gallery_product__section gallery_product__review_summary">
+  <span class="gallery_product__review_summary_reviews_title">리뷰</span>
+  <span class="gallery_product__review_summary_reviews_count">
+    <%= reviews_count_map.present? ? reviews_count_map[product.id] : reviews_count %>
+  </span>
+  <span class="gallery_product__review_summary_divider">|</span>
+  <span class="gallery_product__review_summary_average_score_title"><%= t('products.gallery_product.score') %></span>
+  <span class="gallery_product__review_summary_average_score"><%= product.display_score %></span>
+</div>
