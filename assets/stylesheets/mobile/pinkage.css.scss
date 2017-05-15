@@ -12,8 +12,10 @@
   margin: 10px 2px 0 2px;
 }
 
-.gallery-item .box-default .section.section-photo img.review-img--rect {
+.review_image {
   position: absolute;
+  width: 100%;
+  height: auto;
   top: 0;
   left: 0;
   right: 0;
@@ -21,7 +23,7 @@
   @include border-radius(0);
 }
 
-.section-photo {
+.section--photo {
   background: white;
   position: relative;
   padding-top: 100%;

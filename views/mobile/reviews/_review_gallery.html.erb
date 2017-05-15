@@ -7,11 +7,11 @@
         url: photo_review_popup_mobile_review_path(review)
       }
     ) do %>
-      <div class="section section-photo">
+      <div class="section section--photo">
         <% image = review.image1 %>
         <% image_id = "review-img-#{review.id}" %>
         <% w, h = image.dimension(:gallery) %>
-        <%= image_tag image.url(:gallery), width: w, height: h, id: image_id, class: 'smooth review-img review-img--rect' %>
+        <%= image_tag image.url(:gallery), width: w, height: h, id: image_id, class: 'smooth review_image' %>
         <%= render 'shared/fimg_script', image_id: image_id %>
       </div>
     <% end %>
