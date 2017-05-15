@@ -1,0 +1,15 @@
+<div class="panel-footer no-border">
+  <div class="products_reviews_list_review__actions_container">
+    <div class="inline" style="display: none;">
+      <%= content_tag :a, class: "mall-link-color comments-link #{'link-expand' if !show_comments}" do %>
+        <% if review.comments_count == 0 %>
+          <%= @brand.review_enable_user_comments ? t('reviews.comments.please_write_comments'): t('reviews.comments.no_comments_yet') %>
+        <% else %>
+          <%= t('reviews.comments.comments_count_html', count: review.comments_count) %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= render 'reviews/action_likes', review: review %>
+  </div>
+  <%= render 'reviews/comments', review: review if show_comments %>
+</div>

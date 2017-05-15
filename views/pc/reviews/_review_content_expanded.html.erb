@@ -1,0 +1,20 @@
+<%= content_tag(:div, t('products.reviews.my_last_review', user: review.user_display_name), class: 'my-first-review') if local_assigns[:is_my_last_review] %>
+<div class="panel-body no-border">
+  <%= render 'reviews/review_options', review: review, klass: 'review-options--oneline products_reviews_list_review__review_options' %>
+  <%= render 'reviews/message', review: review %>
+  <%= render 'reviews/images', review: review, li_class: 'grid-4 review_expanded__thumbnail', ul_class: 'images review_expanded__thumbnails_container' %>
+</div>
+<div class="panel-footer no-border">
+  <div class="products_reviews_list_review__actions_container">
+    <div class="inline" style="display: none;">
+      <a class="mall-link-color comments-link link-collapse"><%= t('reviews.close_expanded_review') %></a>
+    </div>
+    <%= render 'reviews/action_likes', review: review %>
+  </div>
+  <%= render 'reviews/comments', review: review %>
+  <div class="products_reviews_list_review__collapse">
+    <a class="link-collapse">
+      <div class="products_reviews_list_review__collapse_button">▲</div>
+    </a>
+  </div>
+</div>

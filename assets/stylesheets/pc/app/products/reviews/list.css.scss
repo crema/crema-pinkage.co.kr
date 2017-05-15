@@ -1,0 +1,330 @@
+@import "../../../lib/common";
+@import "compass/css3/transition";
+@import "../../../lib/css3/opacity";
+
+.products_reviews_list__summary_with_form {
+  padding: 35px;
+  background: #F6F5F5;
+}
+
+.products_reviews_list__summary {
+  text-align: center;
+}
+
+.products_reviews_list__reviews_count_with_score {
+  font-size: 20px;
+}
+
+.products_reviews_list__summary_value {
+  font-weight: bold;
+}
+
+.products_reviews_list__summary_info_divider {
+  margin-left: 5px;
+  margin-right: 15px;
+}
+
+.products_reviews_list__likes_info {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.products_reviews_list__likes_icon {
+  margin-right: 3px;
+}
+
+.products_reviews_list__likes_value {
+  color: #A33E3C;
+  font-weight: bold;
+}
+
+.products_reviews_list__thumbnails_container {
+  position: relative;
+  padding: 0 40px;
+  margin-bottom: 40px;
+}
+
+.products_reviews_list__review_image_item {
+  width: 170px;
+  height: 170px;
+  margin: 0 13px;
+}
+
+.products_reviews_list__review_image_item--last_review_item {
+  position: relative;
+  text-align: center;
+  line-height: 170px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.products_reviews_list__review_image {
+  width: 100%;
+  margin-top: 0 !important;
+}
+
+.products_reviews_list__last_item_indicator {
+  position: absolute;
+  font-size: 40px;
+  top: -46px;
+}
+
+.products_reviews_list__thumbnail_back_scroll {
+  position: absolute;
+  top: 75px;
+  left: -35px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.products_reviews_list__thumbnail_forward_scroll {
+  position: absolute;
+  top: 75px;
+  right: -35px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.products_reviews_list_header {
+  font-size: 16px;
+  padding: 0 35px 20px 35px;
+  border-bottom: 1px solid #dadada;
+}
+
+.products_reviews_list_header__upper {
+  font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  line-height: 42px;
+  @include clearfix;
+}
+
+.products_reviews_list_header__sort_type {
+  color: #949494;
+  font-size: 14px;
+  letter-spacing: -1px;
+}
+
+.products_reviews_list_header__sort_container {
+  float: right;
+  margin-top: 6px;
+
+  .review_option_type {
+    max-width: none;
+  }
+
+  #review_option_type_1 {
+    width: 220px;
+  }
+
+  #review_option_type_2 {
+    width: 170px;
+  }
+
+  #review_option_type_3 {
+    width: 160px;
+  }
+
+  .review_option_type__dropdown_button {
+    border-left: 0;
+  }
+
+  .review_option_type__name {
+    color: #8E8E8E;
+  }
+}
+
+.products_reviews_list_review {
+  padding: 30px 35px 8px 35px;
+}
+
+.products_reviews_list_review__info_container {
+  float: right;
+  margin-bottom: 30px;
+  min-width: 205px;
+  font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.products_reviews_list_review__info {
+  border-top: 1px solid #dadada;
+  padding: 7px 5px;
+
+  &:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.products_reviews_list_review__info_title {
+  line-height: 18px;
+  color: #a8a8a8;
+  display: inline-block;
+  width: 70px;
+}
+
+.products_reviews_list_review__info_value {
+  line-height: 18px;
+  color: #8C8C8C;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.products_reviews_list_review__star_wrap {
+  @include clearfix;
+  display: inline-block;
+}
+
+.products_reviews_list_review__score_text {
+  float: left;
+  font-size: 15px;
+  color: #363636;
+  font-weight: bold;
+}
+
+.products_reviews_list_review__star_rating_container {
+  float: left;
+  font-size: 0;
+  margin-left: 20px;
+  margin-top: 2px;
+}
+
+.products_reviews_list_review__star {
+  margin-right: 8px;
+}
+
+.products_reviews_list_review__review_tag {
+  float: left;
+  margin-left: 2px;
+  margin-top: -1px;
+}
+
+.products_reviews_list_review__review_content {
+  font-size: 13px;
+}
+
+.products_reviews_list_review__review_content_inner {
+}
+
+.products_reviews_list_review__message {
+
+}
+
+.products_reviews_list_review__review_message {
+  max-height: 105px;
+}
+
+.products_reviews_list_review__review_message--collapsed {
+}
+
+.products_reviews_list_review__review_message--collapsed5 {
+}
+
+.products_reviews_list_review__see_more {
+  
+}
+
+
+.products_reviews_list_review__actions_container {
+  line-height: 30px;
+  text-align: left;
+  @include clearfix;
+}
+
+.products_reviews_list_review__like {
+  @include clearfix;
+  float: left;
+}
+
+.products_reviews_list_review__like_icon {
+  float: left;
+}
+
+.products_reviews_list_review__like_text {
+  float: left;
+  margin-left: 5px;
+}
+
+.products_reviews_list_review__like_link {
+  font-size: 18px;
+}
+
+.products_reviews_list_review__like_link--liked {
+  color: #A33E3A;
+  display: none !important;
+}
+
+.products_reviews_list_review__comment_info {
+  display: inline-block;
+  float: left;
+  margin-left: 12px;
+}
+
+.products_reviews_list_review__comments_count {
+  margin-left: 5px;
+}
+
+.product_reviews_list {
+  .review-options {
+    margin-right: 0;
+  }
+
+  .review-option-title {
+    width: 12%;
+    color: #8D8D8D;
+    font-weight: normal !important;
+  }
+
+  .review_option__content {
+    color: #8D8D8D !important;
+  }
+
+  .comments-container {
+    margin-top: 20px;
+    margin-right: 0;
+    border: 0;
+    border-top: 1px solid #e2e2e2;
+    padding: 10px 0;
+  }
+
+  .like-action {
+    @include clearfix;
+  }
+
+  .like-action.liked {
+    .link-like {
+      background: white;
+      border-color: white;
+      color: #A33E3A;
+    }
+
+    .products_reviews_list_review__like_link--like {
+      display: none !important;
+    }
+
+    .products_reviews_list_review__like_link--liked {
+      display: block !important;
+    }
+  }
+}
+
+.products_reviews_list_review__collapse {
+  margin-top: 10px;
+  position: relative;
+  height: 20px;
+}
+
+.products_reviews_list_review__collapse_button {
+  font-size: 14px;
+  background: #CCCCCC;
+  color: white;
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  border-radius: 24px;
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+}

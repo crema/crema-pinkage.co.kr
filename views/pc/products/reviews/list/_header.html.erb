@@ -1,0 +1,13 @@
+<div class="products_reviews_list_header">
+  <div class="products_reviews_list_header__upper">
+    <span class="products_reviews_list_header__sort_type selected">
+      <strong><%= ReviewSort.t(@review_sort) %></strong>
+    </span>
+    <% review_sort_types.select {|r| r != @review_sort}.each do |review_sort_type| %>
+    <span class="review-sort-type-column"> | </span><%= link_to ajax_path(sort: review_sort_type, aloading: '.page'), remote: true do %><span class="products_reviews_list_header__sort_type"><%= ReviewSort.t(review_sort_type) %></span><% end %>
+    <% end %>
+    <div class="products_reviews_list_header__sort_container">
+      <%= render 'reviews/review_options_search', hidden: @review_option_filter.empty? %>
+    </div>
+  </div>
+</div>

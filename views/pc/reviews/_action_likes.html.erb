@@ -1,0 +1,36 @@
+<%
+likes = likes?(review)
+like = get_like(review)
+%>
+<%= content_tag :div, class: "inline like-action #{(like.score > 0 ? 'liked' : 'unliked') if likes} products_reviews_list_review__like", data: {url: like_review_path(review)} do %>
+  <div class="products_reviews_list_review__like_icon">
+    <a class="products_reviews_list_review__like_link products_reviews_list_review__like_link--like link-like">♡</a>
+    <a class="products_reviews_list_review__like_link products_reviews_list_review__like_link--liked link-like">♥</a>
+  </div>
+  <div class="products_reviews_list_review__like_text">좋아요 <%= review.total_score %>개</div>
+  <% if local_assigns[:hide_edit] != true %>
+    <%
+    deletable = review.deletable?(current_user)
+    editable = review.editable?(current_user)
+    %>
+    <% if deletable || editable %>
+      <div class="inline edit-review-container">
+        <% if editable %>
+          <% edit_path = edit_review_path(review, group: @group_by, widget_id: widget.id, review: params[:review]) %>
+          <% if current_user %>
+            <%= link_to edit_path, method: :post, remote: true do %>
+              <span class="edit-review hoverable"><%= t('edit') %></span>
+            <% end %>
+          <% else %>
+            <%= content_tag :span, t('edit'), class: 'edit-review hoverable edit-nonmember', data: {action: 'POST', path: edit_path, prompt: t('reviews.likes.prompt_guest_edit')} %>
+          <% end %>
+        <% end %>
+        <div class="inline edit-review-container-line"></div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+<div class="products_reviews_list_review__comment_info">
+  <span class="products_reviews_list_review__comment_icon"><i class="fa fa-no-comment"></i></span>
+  <span class="products_reviews_list_review__comments_count">댓글 <%= review.comments_count %>개</span>
+</div>

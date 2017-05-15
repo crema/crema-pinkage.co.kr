@@ -1,0 +1,24 @@
+<% editable = comment.editable?(current_user) %>
+<%= content_tag :li, class: 'comment hoverable', id: "comment_#{comment.new_record? ? "{{id}}" : comment.id}" do %>
+  <div class="inner comment__inner">
+    <%= content_tag :div, comment.user_display_name, class: 'lpane', title: comment.user_display_name %>
+    <div class="rpane comment__rpane">
+      <div class="error-message rfloat"></div>
+      <div class="message">
+        <span><%= comment.message.html %></span>
+        <% if editable %>
+          <%= text_field_tag :message, comment.message, class: 'comment-message-edit', data: {update_url: comment_path(comment), message_required: t('comments.edit.message_required')} %>
+        <% end %>
+      </div>
+    </div>
+    <div class="comment__created_at">
+      <%= comment.created_at ? comment.created_at.strftime('%-m.%-d') : nil %>
+    </div>
+    <% if editable %>
+      <div class="edit-comment-container">
+        <a class="link-edit-comment btn-small btn-white"><%= t('edit') %></a>
+        <%= link_to t('destroy'), comment_path(comment), method: :delete, remote: true, class: 'link-delete-comment btn-small btn-white', data: {confirm: t('comments.confirm_destroy')} %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
