@@ -1,0 +1,63 @@
+<% title t('reviews.product_reviews') %>
+<% content_for :topbar do %>
+  <div>
+    <ul class="products_reviews_topbar__back_button">
+      <%= content_tag :li, class: 'action close' do %>
+        <%= content_tag(
+          :a,
+          class: 'link-close topbar_link_close',
+          data: {
+            in_progress_confirm: t('topbar.in_progress_confirm')
+          }
+        ) do %>
+          <span class="topbar_link_close__close">
+            <i class="fa fa-chevron-left"></i>
+          </span>
+          <span class="topbar_link_close__back">
+            <i class="fa fa-chevron-left"></i>
+          </span>
+        <% end %>
+      <% end %>
+    </ul>
+    <div class="products_reviews_topbar__product_info_container">
+      <div class="products_reviews_topbar__product_info">
+        <span class="products_reviews_topbar__info_title">전체 리뷰</span>
+        <span class="products_reviews_topbar__info_value"><%= photo ? product.meta_visible_reviews.with_photo.count : product.meta_visible_reviews.count %></span>
+      </div>
+      <div class="products_reviews_topbar__product_info products_reviews_topbar__product_info--ml">
+        <span class="products_reviews_topbar__info_title">고객 만족도</span>
+        <span class="products_reviews_topbar__info_value"><%= product.display_score('-') %></span>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% content_for :content do %>
+  <% if @product %>
+    <%= content_tag :div, class: "panel panel-reviews pagination-list panel-reviews--product #{'no-data' if @reviews.total_count == 0}" do %>
+      <div class="products_reviews__head">
+        <%= link_to new_mobile_review_path(review_source: @review_source) do %>
+          <div class="products_reviews__reviews_new_link">리뷰 작성하기</div>
+        <% end %>
+      </div>
+      <% if widget.gallery? %>
+        <%= render 'reviews/reviews_gallery' %>
+      <% else %>
+        <div class="panel-body page">
+          <% if @reviews.empty? %>
+            <ul class="reviews">
+              <%= render 'common/reviews/no_reviews' %>
+            </ul>
+          <% else %>
+            <ul class="reviews">
+              <%= widget.render_reviews(self, @reviews) %>
+            </ul>
+          <% end %>
+        </div>
+        <div class="panel-footer">
+          <%= render 'common/shared/pagination', resources: @reviews %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag :div, nil, data: {url: url_for(params.merge(category_id: @category.try(:id), group: ReviewGroupBy::NONE, sort: @review_sort))}, id: 'data-sort-type', class: 'hidden' %>
+<% end %>
