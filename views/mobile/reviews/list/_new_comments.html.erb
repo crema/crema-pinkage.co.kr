@@ -1,0 +1,19 @@
+<div class="new-comments new-comments--pinkage">
+  <%= form_for Comment.new, url: mobile_comments_path, validate: true, remote: true, data: {login_required: true} do |f| %>
+    <% placeholder_text = t('reviews.comments.please_write_comments') %>
+    <% if browser.iphone? %>
+      <%= content_tag :a, placeholder_text, class: 'new-comments__input new-comments__input--button', data: {login_required: true} %>
+      <%= f.hidden_field :message %>
+    <% else %>
+      <%= f.text_field :message, placeholder: placeholder_text, class: 'input-block new-comments__input', data: {login_required: true} %>
+    <% end %>
+    <%= f.hidden_field :review_id, value: review.id %>
+    <%= content_tag :button, 'OK', class: 'review_list_comment__new_comment_button' %>
+    <input type="hidden" name="tracking_id">
+    <% if current_user %>
+      <script class="blueprint" type="text/x-jquery-tmpl">
+        <%= render "comments/comment", comment: Comment.template(current_user, review) %>
+      </script>
+    <% end %>
+  <% end %>
+</div>

@@ -1,3 +1,257 @@
-.gallery--padding {
+@import "compass/css3/border-radius";
+@import "compass/css3/transition";
+
+.gallery--no_padding {
   padding: 0;
+}
+
+.gallery--narrow_padding {
+  padding: 0 2px;
+}
+
+.grid__item--narrow_padding {
+  margin: 10px 2px 0 2px;
+}
+
+.review_image {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include border-radius(0);
+}
+
+.section--photo {
+  background: white;
+  position: relative;
+  padding-top: 100%;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.gallery-item .box-default {
+  background: white;
+  border: 0;
+  @include border-radius(0);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.gallery-item.review-gallery-item .section.section-review.section-review--no_border {
+  border-bottom: 0;
+}
+
+// Product reviews
+body.products.reviews.widget_style_list {
+  #topbar {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background: #1b1b1b;
+
+    ul {
+      position: absolute;
+      top: 12px;
+      left: 18px;
+      height: 20px;
+    }
+  }
+}
+
+.products_reviews_topbar__back_button {
+  color: white;
+}
+
+.products_reviews__head {
+  margin-bottom: 12px;
+}
+
+.products_reviews__reviews_new_link {
+  @include border-radius(24px);
+  text-align: center;
+  border: 1px solid #1b1b1b;
+  margin: 0 16px;
+  font-size: 16px;
+  color: black;
+  line-height: 42px;
+}
+
+
+.products_reviews_topbar__product_info_container {
+  text-align: center;
+  line-height: 42px;
+}
+
+.products_reviews_topbar__product_info {
+  display: inline-block;
+}
+
+.products_reviews_topbar__product_info--ml {
+  margin-left: 15px;
+}
+
+.products_reviews_topbar__info_title {
+  color: #fffefe;
+}
+
+.products_reviews_topbar__info_value {
+  color: #efbbbb;
+}
+
+li.review.review_list--pinkage {
+  border-bottom: 1px solid #e1e0e1;
+  margin: 0;
+  padding: 0 4px;
+}
+
+.review_list__message--no_padding {
+  padding: 0;
+}
+
+.review_list__content_section--padding {
+  padding: 0 12px;
+}
+
+.review_score__author_name {
+  display: inline-block;
+  font-weight: bold;
+  color: #2e2e2e;
+  margin-right: 8px;
+}
+
+.review_score__created_at {
+  padding: 0 14px;
+  color: #9c9c9c;
+}
+
+.review_list__see_more--pinkage {
+  color: #262626;
+  font-weight: bold;
+}
+
+.review_list__collapse_link_container {
+  display: none;
+  text-align: center;
+}
+
+.review_list__collapse_link_icon {
+  width: 22px;
+  height: 10px;
+}
+
+.review_list--expanded {
+  .review_list__collapse_link_container {
+    display: block;
+    padding-bottom: 13px;
+  }
+}
+
+.review-options--pinkage {
+  margin-top: 0;
+}
+
+.review_like_action__comments_count {
+  margin-left: 8px;
+}
+
+.review_list__comments_icon {
+  position: absolute;
+  right: 13px;
+  top: 0;
+  text-align: center;
+  height: 47px;
+  vertical-align: middle;
+  line-height: 47px;
+  background-color: white;
+  box-sizing: content-box;
+}
+
+.review_link_action__like_button {
+  font-size: 20px;
+  display: inline-block;
+  text-align: center;
+  color: #878787;
+  vertical-align: middle;
+  @include transition(all 0.4s ease);
+}
+
+.review_like_action .likable {
+  position: absolute;
+  top: 1px;
+  right: -20px;
+  bottom: 0;
+  font-size: 0;
+}
+
+.review_link_action__like_icon {
+  display: block;
+}
+
+.review_link_action__liked_icon {
+  display: none;
+}
+
+.review_list__like_action .liked {
+  .review_link_action__like_icon {
+    display: none;
+  }
+
+  .review_link_action__liked_icon {
+    display: block;
+    color: #a33e3a;
+  }
+}
+
+.review_list_comment__author_name {
+  font-weight: bold;
+}
+
+.review_list__comment_section {
+  font-size: 12px;
+}
+
+.frame__sub_frame:first-child.review_list__comment_section {
+  border-top: 1px solid #cccccc;
+}
+
+.review_list__new_comment_section {
+  border: 1px solid #cccccc;
+  margin: 0 10px 17px 10px;
+}
+
+.review_list_comment__message {
+  margin-right: 45px;
+}
+
+.review_list_comment__date {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  color: #a5a5a5;
+}
+
+.new-comments--pinkage {
+  padding: 0px 65px 0px 12px;
+  line-height: 39px;
+}
+
+.review_list_comment__new_comment_button {
+  width: 40px;
+  height: 39px;
+  background: white;
+  color: #878787;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+}
+
+.review_list__comment_section .comment {
+  border-top: none;
 }

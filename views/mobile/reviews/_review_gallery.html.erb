@@ -1,0 +1,62 @@
+<%= content_tag :li, class: 'gallery-item grid__item review-gallery-item grid__item--narrow_padding', id: "review_#{review.id}" do %>
+  <div class="reviews_index_gallery__body body box-default">
+    <%= content_tag(
+      :a,
+      class: 'link-fullscreen-popup',
+      data: {
+        url: photo_review_popup_mobile_review_path(review)
+      }
+    ) do %>
+      <div class="section section--photo">
+        <% image = review.image1 %>
+        <% image_id = "review-img-#{review.id}" %>
+        <% w, h = image.dimension(:gallery) %>
+        <%= image_tag image.url(:gallery), width: w, height: h, id: image_id, class: 'smooth review_image' %>
+        <%= render 'shared/fimg_script', image_id: image_id %>
+      </div>
+    <% end %>
+    <%= link_to mobile_review_path(review) do %>
+      <div class="section section-review section-review--no_border">
+        <div class="review-author-info">
+          <div class="review-title">
+            <%= review.review_title %>
+          </div>
+          <div class="date-name-container <%= 'show-created-at' if @brand.review_show_created_at %>">
+            <div class="author-name">
+              <% if review.user_display_name.blank? %>
+                &nbsp;
+              <% else %>
+                <%= review.user_display_name %>
+              <% end %>
+            </div>
+            <div class="created-at">
+              <%= review.created_at.strftime("%Y. %m. %d") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to review.product_url do %>
+      <div class="section section-product">
+        <% if review.product %>
+          <div class="review-product">
+            <div class="review-product-thumbnail">
+              <%= image_tag review.product_image_url, alt: review.product_name, width: 90, height: 90, class: 'gallery_grid__product_thumbnail' %>
+            </div>
+            <div class="review-product-info">
+              <div class="product-info-title">
+                <%= review.product_name %>
+              </div>
+              <div class="product-info-feedbacks">
+                <span class="reviews-count"><%= content_tag :span, t('reviews.label_review'), class: 'gallery-item__product_info_feedbacks_title' %><strong><%= format_reviews_count(review.product.meta_reviews_count) %></span></strong>
+                <span><%= content_tag :span, t('reviews.label_score'), class: 'gallery-item__product_info_feedbacks_title' %><strong><%= review.product.display_score %></strong></span>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="review-product"></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
