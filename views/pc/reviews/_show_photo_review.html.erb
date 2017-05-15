@@ -1,0 +1,45 @@
+<% content_for :content do %>
+  <div class="show_photo_review show_review is_photo fullscreen_popup review">
+    <div class="fullscreen_popup__background ie-png-fix"></div>
+    <div id="photo-popup-container" class="fullscreen_popup__content_container">
+      <div id="photo-popup-content" class="ie-opacity-fix fullscreen_popup__content">
+        <div id="photos-container">
+          <%= render 'popup_photos' %>
+          <%= render 'shared/images_indicator', images_count: review.images_count %>
+        </div>
+        <% if review.images_count > 1 %>
+          <div id="image-prev" class="navigation-button hoverable ie-opacity-fix">
+            <div class="button-container">
+              <div class="sprites-navigator-left ie-png-fix"></div>
+            </div>
+          </div>
+          <div id="image-next" class="navigation-button hoverable ie-opacity-fix">
+            <div class="button-container">
+              <div class="sprites-navigator-right ie-png-fix"></div>
+            </div>
+          </div>
+        <% end %>
+        <div id="review-contents-container" class="ie-opacity-fix">
+          <div id="info-container">
+            <div class="info">
+              <div class="show_photo_review__product_thumbnail">
+                <%= render 'reviews/show/product_thumbnail' %>
+              </div>
+              <div class="show_photo_review__product_info">
+                <%= render 'reviews/show/product_name' %>
+                <div class="show_photo_review__product_score">
+                  <%= render 'reviews/star_rating', score: review.score %>
+                </div>
+                <%= render 'reviews/show/user_name' %>
+              </div>
+              <%= render 'reviews/show/like_result' %>
+            </div>
+          </div>
+          <%= render 'reviews/show/message' %>
+        </div>
+      </div>
+    </div>
+    <%= render 'shared/fullscreen_popup/close' %>
+    <%= render 'shared/crema_review_watermark' %>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+<% klass = '' unless local_assigns[:klass] %>
+<% if !review.visible_options.empty? || (@brand.review_show_options && !review.product_options.blank?) %>
+  <%= content_tag :div, class: "review-options #{klass}" do %>
+    <% if !review.visible_options.empty? %>
+      <% review.visible_options.each_with_index do |option, i| %>
+        <%= content_tag :div, class: "review-option #{'first' if i == 0}" do %>
+          <div class="review-option-title review_option__title"><%= option.name %></div>
+          <div class="review-option-content review_option__content"><%= option.value %> <%= option.unit if option.field_type == ReviewOptionFieldType::NUMBER && !option.unit.blank? %></div>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if @brand.review_show_options && !review.product_options.blank? %>
+      <div class='review-option options'>
+        <div class="review-option-title review_option__title"><%= t('review_options.title') %></div>
+        <div class="review-option-content review_option__content">
+          <% review.product_options.each_with_index do |option, i| %>
+            <span class="review-product-option <%= 'first-option' if 0 == i %>">
+              <span class="option-key"><%= option.first %>:</span>
+              <span class='option-value'><%= option.last %></span>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
