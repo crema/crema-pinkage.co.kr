@@ -30,9 +30,15 @@
                 <div class="show_photo_review__product_score">
                   <%= render 'reviews/star_rating', score: review.score %>
                 </div>
-                <%= render 'reviews/show/user_name' %>
+                <div class="show_review__user_name_and_created_at">
+                  <div class="show_review__user_name">
+                    <%= review.user_display_name %>
+                  </div>
+                  <div class="show_review__created_at">
+                    <%= review.created_at.strftime('%Y.%-m.%-d') %>
+                  </div>
+                </div>
               </div>
-              <%= render 'reviews/show/like_result' %>
             </div>
           </div>
           <%= render 'reviews/show/message' %>

@@ -7,19 +7,26 @@
     color: #323232;
     text-decoration: none;
     border: none;
+
+    img {
+      width: 80px;
+      height: 100%;
+      min-height: 104px;
+    }
   }
 
   .review-options {
     margin-right: 0;
     margin-bottom: 7px;
     border: none;
-    border-top: 1px dashed #ddd;
-    border-bottom: 1px dashed #ddd;
-    padding: 15px 5px;
+    border: 1px solid #E1E0E1;
+    padding: 12px;
 
     .review-option {
+      margin-top: 7px;
+
       .review-option-title {
-        width: 40%;
+        width: 35%;
       }
 
       .review-product-option {
@@ -36,8 +43,7 @@
       }
 
       .review-option-content {
-        width: 60%;
-        text-align: right;
+        width: 65%;
 
         // IE7 needs a little margin to keep in single line
         body.ie-7 & {
@@ -45,6 +51,28 @@
         }
       }
     }
+  }
+
+  .comment {
+    border-top: 0 !important;
+    margin-bottom: 12px;
+  }
+
+  .comment__inner {
+    padding: 0 !important;
+  }
+
+  .comment__rpane {
+    padding: 0 !important;
+    margin-top: 4px;
+  }
+
+  .comment__created_at {
+    display: none;
+  }
+
+  .comments__submit {
+    width: 40px;
   }
 }
 
@@ -135,10 +163,10 @@
       overflow: visible;
 
       #info-container {
-        height: 170px;
+        height: 150px;
 
         .info {
-          padding: 20px 23px 16px 23px;
+          padding: 20px 13px 16px 13px;
           @include clearfix;
         }
       }
@@ -149,20 +177,18 @@
         position: relative;
 
         #message-contents {
-          padding-left: 23px;
-          width: 242px;
+          padding: 0 13px;
 
           .all-message {
             position: relative;
-            padding: 7px 0 30px 0;
-            border-bottom: 1px dotted #eaeaea;
+            padding: 7px 0 5px 0;
             font-size: 11px;
             color: #5a5a5a;
-            width: 242px;
 
             .message {
               padding: 0 5px;
               word-wrap: break-word;
+              font-size: 12px;
             }
 
             .date {
@@ -186,12 +212,18 @@
 
 .show_photo_review__product_info {
   float: right;
-  width: 160px;
+  width: 168px;
+  height: 104px;
+  position: relative;
 }
 
 .show_photo_review__product_score {
   height: 14px;
   padding: 6px 0 15px 0;
+
+  .star {
+    margin-right: 5px;
+  }
 }
 
 #zoom-image {
@@ -238,4 +270,11 @@
       @include opacity(0);
     }
   }
+}
+
+.show_review__actions_container {
+  line-height: 35px;
+  text-align: left;
+  border-bottom: 1px solid #E1E0E1;
+  @include clearfix;
 }

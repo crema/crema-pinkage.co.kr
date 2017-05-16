@@ -30,7 +30,6 @@
   &.is_photo {
     .show_review__feedback_container {
       padding: 20px 0;
-      width: 242px;
 
       .actions-container .like-action {
         width: 100%;
@@ -68,7 +67,7 @@
       .comments-container {
         margin-right: 0;
         padding: 10px;
-        width: 219px;
+        border: 0;
 
         ul li {
           border-top: 1px solid #eaeaea;
@@ -105,7 +104,6 @@
 
     .show_review__user_name {
       font-size: 11px;
-      color: #adadad;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -135,7 +133,16 @@
 }
 
 .show_review__product_name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 18px;
+}
+
+.show_review__user_name_and_created_at {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #C2C2C2;
+}
+
+.show_review__created_at {
+  margin-top: 4px;
 }

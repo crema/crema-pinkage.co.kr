@@ -2,12 +2,12 @@
 likes = likes?(review)
 like = get_like(review)
 %>
-<%= content_tag :div, class: "inline like-action #{(like.score > 0 ? 'liked' : 'unliked') if likes} products_reviews_list_review__like", data: {url: like_review_path(review)} do %>
-  <div class="products_reviews_list_review__like_icon">
-    <a class="products_reviews_list_review__like_link products_reviews_list_review__like_link--like link-like">♡</a>
-    <a class="products_reviews_list_review__like_link products_reviews_list_review__like_link--liked link-like">♥</a>
+<%= content_tag :div, class: "inline like-action #{(like.score > 0 ? 'liked' : 'unliked') if likes} review_action_likes__like", data: {url: like_review_path(review)} do %>
+  <div class="review_action_likes__like_icon">
+    <a class="review_action_likes__like_link review_action_likes__like_link--like link-like">♡</a>
+    <a class="review_action_likes__like_link review_action_likes__like_link--liked link-like">♥</a>
   </div>
-  <div class="products_reviews_list_review__like_text">좋아요 <%= review.total_score %>개</div>
+  <div class="review_action_likes__like_text">좋아요 <%= review.total_score %>개</div>
   <% if local_assigns[:hide_edit] != true %>
     <%
     deletable = review.deletable?(current_user)
@@ -30,7 +30,7 @@ like = get_like(review)
     <% end %>
   <% end %>
 <% end %>
-<div class="products_reviews_list_review__comment_info">
-  <span class="products_reviews_list_review__comment_icon"><i class="fa fa-no-comment"></i></span>
-  <span class="products_reviews_list_review__comments_count">댓글 <%= review.comments_count %>개</span>
+<div class="review_action_likes__comment_info">
+  <span class="review_action_likes__comment_icon"><i class="fa fa-no-comment"></i></span>
+  <span class="review_action_likes__comments_count">댓글 <%= review.comments_count %>개</span>
 </div>

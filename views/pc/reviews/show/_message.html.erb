@@ -3,13 +3,10 @@
     <%= render 'review_options', review: review %>
     <div class="all-message ie-opacity-fix">
       <%= render 'message', review: review %>
-      <% if brand.review_show_created_at %>
-        <div class="date ie-opacity-fix"><%= review.created_at.strftime("%Y. %m. %d") %></div>
-      <% end %>
     </div>
     <div class="show_review__feedback_container">
       <div class="panel-footer no-border">
-        <div class="actions-container">
+        <div class="show_review__actions_container">
           <%= render 'action_likes', review: review, hide_edit: true %>
         </div>
         <%= render 'comments', review: review %>
