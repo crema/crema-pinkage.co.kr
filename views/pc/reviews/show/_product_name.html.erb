@@ -1,0 +1,7 @@
+<div class="show_review__product_name">
+  <% if review.product_url && allow_move_to_shop? %>
+    <%= content_tag :a, review.product_name, class: 'link-to-product link-iframe', data: {url: review.product_url} %>
+  <% else %>
+    <%= content_tag :span, review.product_name, class: 'link-to-product' %>
+  <% end %>
+</div>

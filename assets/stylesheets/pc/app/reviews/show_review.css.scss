@@ -1,0 +1,141 @@
+@import "../../lib/common";
+
+.show_review {
+  &.is_text {
+    .show_review__feedback_container {
+      margin-top: 10px;
+    }
+
+    .show_review__product_name {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .show_review__user_name {
+      float: left;
+      color: #555;
+      margin-right: 8px;
+    }
+
+    .show_review__like_result {
+      margin-top: 10px;
+      color: #999;
+
+      br {
+        display: none;
+      }
+    }
+  }
+
+  &.is_photo {
+    .show_review__feedback_container {
+      padding: 20px 0;
+      width: 242px;
+
+      .actions-container .like-action {
+        width: 100%;
+        @include clearfix;
+
+        .title {
+          margin-right: 0;
+          float: left;
+          line-height: 25px;
+          vertical-align: middle;
+        }
+
+        .link-like {
+          margin-right: 0;
+        }
+
+        .likable {
+          float: right;
+
+          .link-unlike {
+            margin-right: 0;
+          }
+
+          .btn {
+            width: 38px;
+            margin-right: 0;
+          }
+        }
+
+        .like-score-container {
+          display: none;
+        }
+      }
+
+      .comments-container {
+        margin-right: 0;
+        padding: 10px;
+        width: 219px;
+
+        ul li {
+          border-top: 1px solid #eaeaea;
+
+          &:first-child {
+            border-top: none;
+          }
+
+         .inner {
+            .lpane {
+              float: none;
+              width: 120px;
+              margin-left: 0;
+              padding-bottom: 2px;
+            }
+
+            .rpane {
+              padding-left: 0;
+              color: #999;
+              font-size: 11px;
+            }
+          }
+        }
+      }
+    }
+
+    .show_review__product_name {
+      @include font-default;
+      color: #323232;
+      font-size: 12px;
+      font-weight: bold;
+      padding-top: 4px;
+    }
+
+    .show_review__user_name {
+      font-size: 11px;
+      color: #adadad;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .show_review__like_result {
+      border: 1px solid #e7e7e7;
+      padding: 8px 9px;
+      position: absolute;
+      width: 222px;
+      height: 30px;
+      left: 23px;
+      top: 106px;
+
+      .review-like-info {
+        line-height: 15px;
+        color: #a4a4a4;
+        font-size: 11px;
+        @include font-default;
+
+        strong {
+          color: #1f1f1f;
+        }
+      }
+    }
+  }
+}
+
+.show_review__product_name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
