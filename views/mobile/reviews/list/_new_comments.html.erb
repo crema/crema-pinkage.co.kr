@@ -1,7 +1,8 @@
 <div class="new-comments new-comments--pinkage">
   <%= form_for Comment.new, url: mobile_comments_path, validate: true, remote: true, data: {login_required: true} do |f| %>
     <% placeholder_text = t('reviews.comments.please_write_comments') %>
-    <% if browser.iphone? %>
+    <% is_iphone = browser.respond_to?(:device) ? browser.device.iphone? : browser.iphone? %>
+    <% if is_iphone %>
       <%= content_tag :a, placeholder_text, class: 'new-comments__input new-comments__input--button', data: {login_required: true} %>
       <%= f.hidden_field :message %>
     <% else %>
