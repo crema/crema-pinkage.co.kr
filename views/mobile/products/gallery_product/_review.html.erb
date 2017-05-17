@@ -1,5 +1,5 @@
 <div class="gallery_product__section gallery_product__review">
-  <%= link_to mobile_review_path(review) do %>
+  <%= link_to mobile_review_path(review), data: {link_target: 'window'} do %>
     <div class="gallery_product__review_inner">
       <div class="gallery_product__review_image_box">
         <%= image_tag review.photo? ? review.image1_url(:thumbnail) : manual_asset_url('thumbnails/review/text_review_v1.png'), class: 'gallery_product__review_image smooth review-image' %>
