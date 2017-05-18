@@ -15,7 +15,7 @@
         <%= render 'shared/fimg_script', image_id: image_id %>
       </div>
     <% end %>
-    <%= link_to mobile_review_path(review) do %>
+    <%= link_to mobile_review_path(review), data: {link_target: 'window'} do %>
       <div class="section section-review section-review--no_border">
         <div class="review-author-info">
           <div class="review-title">
