@@ -96,7 +96,7 @@ end
     </div>
     <div class="review_list__comments_icon">
       <% comments_tab_content = capture do %>
-        <span class="review_list__comments_tab_icon sprites-icon-comment"></span>
+        <%= image_tag(manual_asset_url('widgets/comment.png'), class: 'review_list__comments_tab_icon') %>
       <% end %>
 
       <% if brand.review_enable_user_comments || review.comments_count > 0 %>
@@ -118,7 +118,7 @@ end
 
   <div class="review_list__collapse_link_container">
     <a class="review_list__collapse_link">
-      <span class="review_list__collapse_link_icon sprites-icon-collapse"></span>
+      <%= image_tag manual_asset_url('widgets/collapse.png'), class: 'review_list__collapse_link_icon' %>
     </a>
   </div>
 <% end %>
