@@ -36,7 +36,7 @@
         </div>
       </div>
     <% end %>
-    <%= link_to review.product_url do %>
+    <%= link_to review.product_url, data: {link_target: 'window'} do %>
       <div class="section section-product">
         <% if review.product %>
           <div class="review-product">
