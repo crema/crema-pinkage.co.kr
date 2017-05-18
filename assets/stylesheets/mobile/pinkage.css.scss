@@ -134,14 +134,23 @@ li.review.review_list--pinkage {
   font-weight: bold;
 }
 
+.review_list__comments_tab_icon {
+  position: absolute;
+  top: 15px;
+  right: 4px;
+}
+
 .review_list__collapse_link_container {
   display: none;
   text-align: center;
+  position: relative;
+  height: 29px;
 }
 
 .review_list__collapse_link_icon {
-  width: 22px;
-  height: 10px;
+  position: absolute;
+  top: 0;
+  left: 46%;
 }
 
 .review_list--expanded {
