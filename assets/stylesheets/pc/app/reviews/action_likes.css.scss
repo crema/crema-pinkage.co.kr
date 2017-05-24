@@ -5,13 +5,19 @@
   float: left;
 }
 
-.review_action_likes__like_icon {
+.review_action_likes__like_icon_container {
   float: left;
+  position: relative;
+}
+
+.review_action_likes__like_icon {
+  position: absolute;
+  top: 5px;
 }
 
 .review_action_likes__like_text {
   float: left;
-  margin-left: 5px;
+  margin-left: 28px;
 }
 
 .review_action_likes__like_link {
@@ -24,13 +30,19 @@
 }
 
 .review_action_likes__comment_info {
+  position: relative;
   display: inline-block;
   float: left;
   margin-left: 12px;
 }
 
+.review_action_likes__comment_icon {
+  position: absolute;
+  top: 6px;
+}
+
 .review_action_likes__comments_count {
-  margin-left: 5px;
+  margin-left: 28px;
 }
 
 .like-action {

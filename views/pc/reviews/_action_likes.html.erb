@@ -3,9 +3,13 @@ likes = likes?(review)
 like = get_like(review)
 %>
 <%= content_tag :div, class: "inline like-action #{(like.score > 0 ? 'liked' : 'unliked') if likes} review_action_likes__like", data: {url: like_review_path(review)} do %>
-  <div class="review_action_likes__like_icon">
-    <a class="review_action_likes__like_link review_action_likes__like_link--like link-like">♡</a>
-    <a class="review_action_likes__like_link review_action_likes__like_link--liked link-like">♥</a>
+  <div class="review_action_likes__like_icon_container">
+    <a class="review_action_likes__like_link review_action_likes__like_link--like link-like">
+      <span class="review_action_likes__like_icon sprites-pinkage-heart-o"></span>
+    </a>
+    <a class="review_action_likes__like_link review_action_likes__like_link--liked link-like">
+      <span class="review_action_likes__like_icon sprites-pinkage-heart"></span>
+    </a>
   </div>
   <div class="review_action_likes__like_text">좋아요 <%= review.total_score %>개</div>
   <% if local_assigns[:hide_edit] != true %>
@@ -31,6 +35,6 @@ like = get_like(review)
   <% end %>
 <% end %>
 <div class="review_action_likes__comment_info">
-  <span class="review_action_likes__comment_icon"><i class="fa fa-no-comment"></i></span>
+  <span class="review_action_likes__comment_icon sprites-pinkage-icon-comment"></span>
   <span class="review_action_likes__comments_count">댓글 <%= review.comments_count %>개</span>
 </div>
