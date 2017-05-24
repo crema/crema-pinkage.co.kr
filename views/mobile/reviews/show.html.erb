@@ -1,0 +1,83 @@
+<% content_for :topbar do %>
+  <%= render 'topbar/topbar' %>
+<% end %>
+<% content_for :content do %>
+  <div class="panel panel-review">
+    <% if @review.product %>
+      <div class="panel-heading no-border">
+        <%= render @review.product, review_source: WrittenSource::BRAND_MOBILE_REVIEW_DETAIL, editable_review: @review.editable?(current_user) ? @review : nil %>
+      </div>
+    <% end %>
+    <div class="panel-body no-border">
+      <div class="panel sub-panel likes-container">
+        <div class="panel-heading thin-black"></div>
+        <div class="panel-body like-count-wrap">
+          <%= content_tag :div, t('reviews.how_many_people_thought_helpful_html', likes_count: @review.likes_count, plus_likes_count: @review.plus_likes_count), class: "like-result #{'overflow' if @review.likes_count >= 100}" %>
+          <div class="r-contents">
+            <div class="author-name"><%= @review.user_display_name %></div>
+            <% if @brand.review_show_created_at %>
+              <div class="date"><%= @review.created_at.strftime("%Y.%m.%d") %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% if @review.display_user_grade? %>
+        <div class="panel sub-panel user-grade-container">
+          <div class="panel-body">
+            <%= t('reviews.author_grade') %>:
+            <div class="grade-info">
+              <% if (user_grade_icon_url = @review.user_grade_icon_url) %>
+                <%= image_tag user_grade_icon_url, class: 'user-grade-icon' %>
+              <% end %>
+              <%= @review.brand_user_grade_name %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="panel sub-panel body-container">
+        <%= render 'reviews/score', klass: 'panel-heading' %>
+        <div class="panel-body">
+          <%= render 'reviews/options' %>
+          <div class="message review-contents-style">
+            <%= @review.message_with_tag %>
+            <%= render 'common/reviews/translated_by' %>
+          </div>
+          <%= render 'images' %>
+        </div>
+      </div>
+
+      <div class="panel sub-panel">
+        <div class="panel-body">
+          <%= render 'reviews/like_action' %>
+        </div>
+      </div>
+
+      <% is_first_child = true %>
+      <div class="comment-container">
+        <%
+        if @review.comments_count == 0
+          klass = 'hidden'
+        else
+          klass = 'first-child'
+          is_first_child = false
+        end
+        %>
+        <%= content_tag :div, class: "panel sub-panel panel-comments #{klass}" do %>
+          <div class="panel-heading thin-black"></div>
+          <div class="panel-body">
+            <ul>
+              <%= render @review.comments %>
+            </ul>
+          </div>
+        <% end %>
+        <% if @brand.review_enable_user_comments %>
+          <%= content_tag :div, class: "panel sub-panel panel-new-comment #{'first-child' if is_first_child}" do %>
+            <div class="panel-body">
+              <%= render 'reviews/new_comments' %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
