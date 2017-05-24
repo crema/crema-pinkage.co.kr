@@ -1,83 +1,113 @@
 <% content_for :topbar do %>
-  <%= render 'topbar/topbar' %>
+  <div class="reviews_show_topbar__back_button action close">
+    <%= content_tag(
+      :a,
+      class: 'link-close topbar_link_close',
+      data: {
+        in_progress_confirm: t('topbar.in_progress_confirm')
+      }
+    ) do %>
+      <span class="topbar_link_close__close">
+        <i class="fa fa-chevron-left"></i><span class="reviews_show_topbar__button_title">BACK</span>
+      </span>
+      <span class="topbar_link_close__back">
+        <i class="fa fa-chevron-left"></i><span class="reviews_show_topbar__button_title">BACK</span>
+      </span>
+    <% end %>
+  </div>
 <% end %>
 <% content_for :content do %>
   <div class="panel panel-review">
-    <% if @review.product %>
-      <div class="panel-heading no-border">
-        <%= render @review.product, review_source: WrittenSource::BRAND_MOBILE_REVIEW_DETAIL, editable_review: @review.editable?(current_user) ? @review : nil %>
+    <div class="reviews_show__author_info">
+      <div class="reviews_show__author_name"><%= review.user_display_name %></div>
+      <div class="reviews_show__star_rating">
+        <%= render 'reviews/star_rating', score: review.score %>
       </div>
-    <% end %>
-    <div class="panel-body no-border">
-      <div class="panel sub-panel likes-container">
-        <div class="panel-heading thin-black"></div>
-        <div class="panel-body like-count-wrap">
-          <%= content_tag :div, t('reviews.how_many_people_thought_helpful_html', likes_count: @review.likes_count, plus_likes_count: @review.plus_likes_count), class: "like-result #{'overflow' if @review.likes_count >= 100}" %>
-          <div class="r-contents">
-            <div class="author-name"><%= @review.user_display_name %></div>
-            <% if @brand.review_show_created_at %>
-              <div class="date"><%= @review.created_at.strftime("%Y.%m.%d") %></div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <% if @review.display_user_grade? %>
-        <div class="panel sub-panel user-grade-container">
-          <div class="panel-body">
-            <%= t('reviews.author_grade') %>:
-            <div class="grade-info">
-              <% if (user_grade_icon_url = @review.user_grade_icon_url) %>
-                <%= image_tag user_grade_icon_url, class: 'user-grade-icon' %>
-              <% end %>
-              <%= @review.brand_user_grade_name %>
-            </div>
-          </div>
-        </div>
+      <% if @brand.review_show_created_at %>
+        <div class="reviews_show__date"><%= review.created_at.strftime("%Y.%m.%d") %></div>
       <% end %>
-      <div class="panel sub-panel body-container">
-        <%= render 'reviews/score', klass: 'panel-heading' %>
-        <div class="panel-body">
-          <%= render 'reviews/options' %>
-          <div class="message review-contents-style">
-            <%= @review.message_with_tag %>
-            <%= render 'common/reviews/translated_by' %>
+    </div>
+
+    <div class="reviews_show__product_and_options">
+      <div class="reviews_show__product">
+        <div class="reviews_show__product_image_container">
+          <%= image_tag review.product.image_url(:extra_small), class: 'reviews_show__product_image smooth', alt: review.product.name %>
+        </div>
+        <div class="reviews_show_product_info">
+          <div class="reviews_show__product_name"><%= review.product.name %></div>
+          <div class="reviews_show__product_price"><%= review.product.final_price.format(symbol: 'won') %></div>
+          <div class="reviews_show__reviews_count_and_score">
+            <span class="revies_show__reviews_count_title">리뷰</span>
+            <span><%= review.product.meta_visible_reviews.count %></span>
+            <span class="revies_show__score_title">평점</span>
+            <span><%= review.product.display_score('-') %></span>
           </div>
-          <%= render 'images' %>
         </div>
       </div>
+      <%= render 'reviews/options' %>
+    </div>
 
-      <div class="panel sub-panel">
-        <div class="panel-body">
-          <%= render 'reviews/like_action' %>
-        </div>
+    <div class="reviews_show__message_and_image">
+      <div class="reviews_show__message">
+        <%= review.message_with_tag %>
       </div>
+      <% if review.images_count > 0 %>
+        <ul class="reviews_show__images">
+          <% (1..review.images_count).each do |i| %>
+            <li class="reviews_show__image_container">
+              <%= content_tag(
+                :a,
+                class: 'link-fullscreen-popup',
+                data: {
+                  url: photo_review_popup_mobile_review_path(review, photo_index: i)
+                }
+              ) do %>
+                <%= image_tag review.image(i).url(:thumbnail), class: 'reviews_show__image smooth', alt: review.title %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
-      <% is_first_child = true %>
-      <div class="comment-container">
+    <div class="reviews_show__like_section">
+      <div class="reviews_show__like_action">
         <%
-        if @review.comments_count == 0
-          klass = 'hidden'
-        else
-          klass = 'first-child'
-          is_first_child = false
-        end
+        likes = likes?(review)
+        like = get_like(review)
         %>
-        <%= content_tag :div, class: "panel sub-panel panel-comments #{klass}" do %>
-          <div class="panel-heading thin-black"></div>
-          <div class="panel-body">
-            <ul>
-              <%= render @review.comments %>
-            </ul>
-          </div>
-        <% end %>
-        <% if @brand.review_enable_user_comments %>
-          <%= content_tag :div, class: "panel sub-panel panel-new-comment #{'first-child' if is_first_child}" do %>
-            <div class="panel-body">
-              <%= render 'reviews/new_comments' %>
+        <div class="review_like_action">
+          <%= content_tag :div, class: "like-action #{(like.score > 0 ? 'liked' : 'unliked') if likes}", data: {url: like_mobile_review_path(review)} do %>
+            <div class="review_like_action__label">
+              <span>좋아요 <%= review.total_score %>개</span>
+              <span class="review_like_action__comments_count">댓글 <%= review.comments_count %>개</span>
+            </div>
+            <div class="likable">
+              <a class="link-like review_link_action__like_button">
+                <i class="fa fa-heart-o review_link_action__like_icon"></i>
+                <i class="fa fa-heart review_link_action__liked_icon"></i>
+              </a>
             </div>
           <% end %>
-        <% end %>
+        </div>
       </div>
+      <div class="reviews_show__comments_icon">
+        <%= image_tag(manual_asset_url('widgets/comment.png'), class: 'reviews_show__comments_tab_icon') %>
+      </div>
+    </div>
+
+    <div class="reviews_show__comments comment-container">
+      <div class="review_show__comment_section">
+        <ul>
+          <%= render partial: 'reviews/list/comment', collection: review.comments %>
+        </ul>
+      </div>
+
+      <% if brand.review_enable_user_comments %>
+        <div class="review_show__new_comment_section">
+          <%= render 'reviews/list/new_comments', review: review %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

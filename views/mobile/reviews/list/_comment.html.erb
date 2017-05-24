@@ -1,9 +1,9 @@
-<%= content_tag_for :li, comment, class: 'review_list_comment' do %>
+<%= content_tag_for :li, comment, class: 'review_comment' do %>
   <div>
-    <div class="review_list_comment__message_container">
-      <span class="review_list_comment__author_name"><%= comment.user_display_name %></span>
-      <span class="review_list_comment__message"><%= comment.message.html %></span>
+    <div class="review_comment__message_container">
+      <span class="review_comment__author_name"><%= comment.user_display_name %></span>
+      <span class="review_comment__message"><%= comment.message.html %></span>
     </div>
-    <div class="review_list_comment__date"><%= comment.created_at.strftime('%m.%d') %></div>
+    <div class="review_comment__date"><%= comment.created_at.strftime('%m.%d') %></div>
   </div>
 <% end %>

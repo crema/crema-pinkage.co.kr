@@ -9,7 +9,7 @@
       <%= f.text_field :message, placeholder: placeholder_text, class: 'input-block new-comments__input', data: {login_required: true} %>
     <% end %>
     <%= f.hidden_field :review_id, value: review.id %>
-    <%= content_tag :button, 'OK', class: 'review_list_comment__new_comment_button' %>
+    <%= content_tag :button, 'OK', class: 'review_comment__new_comment_button' %>
     <input type="hidden" name="tracking_id">
     <% if current_user %>
       <script class="blueprint" type="text/x-jquery-tmpl">
