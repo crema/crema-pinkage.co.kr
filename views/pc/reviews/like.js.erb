@@ -1,0 +1,2 @@
+var $likes_count = $("#review_<%= @review.id %> .review_action_likes__like_count");
+$likes_count.text("<%= @review.total_score %>");
