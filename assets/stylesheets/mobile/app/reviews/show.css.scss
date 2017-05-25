@@ -242,10 +242,14 @@ body.reviews.show {
   float: left;
   margin-left: 38px;
   font-size: 13px;
+  max-width: 60%
 }
 
 .reviews_show__product_name {
-
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .reviews_show__product_price {

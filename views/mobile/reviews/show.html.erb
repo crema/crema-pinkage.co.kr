@@ -31,7 +31,9 @@
     <div class="reviews_show__product_and_options">
       <div class="reviews_show__product">
         <div class="reviews_show__product_image_container">
-          <%= image_tag review.product.image_url(:extra_small), class: 'reviews_show__product_image smooth', alt: review.product.name %>
+          <%= link_to review.product.url do %>
+            <%= image_tag review.product.image_url(:extra_small), class: 'reviews_show__product_image smooth', alt: review.product.name %>
+          <% end %>
         </div>
         <div class="reviews_show_product_info">
           <div class="reviews_show__product_name"><%= review.product.name %></div>
