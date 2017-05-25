@@ -29,7 +29,9 @@
           </div>
           <div class="products_reviews_list__thumbnails_container">
             <div id="lista" class="als-container">
-              <span class="als-prev"><div class="products_reviews_list__thumbnail_back_scroll">◀</div></span>
+              <span class="als-prev">
+                <span class="products_reviews_list__thumbnail_back_scroll sprites-pinkage-navigator-left"></span>
+              </span>
               <div class="products_reviews_list__thumbnails als-viewport">
                 <ul class="als-wrapper">
                   <% review_images.each_with_index do |review_image, i| %>
@@ -50,7 +52,9 @@
                   <% end %>
                 </ul>
               </div>
-              <span class="als-next"><div class="products_reviews_list__thumbnail_forward_scroll">▶</div></span>
+              <span class="als-next">
+                <span class="products_reviews_list__thumbnail_forward_scroll sprites-pinkage-navigator-right"></span>
+              </span>
             </div>
           </div>
         </div>

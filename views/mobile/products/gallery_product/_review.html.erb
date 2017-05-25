@@ -2,7 +2,11 @@
   <%= link_to mobile_review_path(review), data: {link_target: 'window'} do %>
     <div class="gallery_product__review_inner">
       <div class="gallery_product__review_image_box">
-        <%= image_tag review.photo? ? review.image1_url(:thumbnail) : manual_asset_url('thumbnails/review/text_review_v1.png'), class: 'gallery_product__review_image smooth review-image' %>
+        <% if review.photo? %>
+          <%= image_tag review.image1_url(:thumbnail), class: 'gallery_product__review_image smooth review-image' %>
+        <% else %>
+          <span class="gallery_product__text_icon sprites-pinkage-icon-text"></span>
+        <% end%>
       </div>
       <div class="gallery_product__review_message">
         <%= review.message_without_tag.limit(max_bytes_per_line: widget.mobile_review_message_max_bytes, max_lines: 1, flatten: true).html %>
