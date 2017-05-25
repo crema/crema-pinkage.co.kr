@@ -11,7 +11,7 @@ like = get_like(review)
       <span class="review_action_likes__like_icon sprites-pinkage-heart"></span>
     </a>
   </div>
-  <div class="review_action_likes__like_text">좋아요 <%= review.total_score %>개</div>
+  <div class="review_action_likes__like_text">좋아요 <span class="review_action_likes__like_count"><%= review.total_score %></span>개</div>
   <% if local_assigns[:hide_edit] != true %>
     <%
     deletable = review.deletable?(current_user)
