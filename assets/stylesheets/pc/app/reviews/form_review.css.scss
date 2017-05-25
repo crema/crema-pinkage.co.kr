@@ -21,7 +21,7 @@
   border: 1px solid #dadada;
   padding: 5px 13px;
   float: left;
-  margin-left: 24px;
+  margin-left: 20px;
   width: 29%;
 
   &.first {
@@ -95,6 +95,8 @@ body.products.reviews .form_review textarea:-moz-placeholder {
   border: 1px solid #dadada;
   background: white;
   @include transition(padding-top 0.3s ease);
+  width: 958px;
+  height: 268px;
 }
 
 .form_review__input_area_container {
@@ -108,7 +110,7 @@ body.products.reviews .form_review textarea:-moz-placeholder {
 }
 
 .form_review__textarea {
-  min-height: 100px;
+  min-height: 128px;
   height: auto;
   font-size: 14px;
   line-height: 16px;
@@ -124,7 +126,7 @@ body.products.reviews .form_review textarea:-moz-placeholder {
   position: absolute;
   left: 0;
   width: 204px;
-  height: 33px;
+  height: 42px;
   border: 1px solid #dadada;
   margin-right: 5px;
   text-align: center;
@@ -135,7 +137,7 @@ body.products.reviews .form_review textarea:-moz-placeholder {
 .form_review__add_image_description {
   position: absolute;
   color: #8f8f8f;
-  top: 8px;
+  top: 13px;
   left: 60px;
   white-space: nowrap;
   overflow: hidden;
@@ -143,10 +145,6 @@ body.products.reviews .form_review textarea:-moz-placeholder {
   text-overflow: ellipsis;
   width: 135px;
   font-size: 14px;
-}
-
-.form_review__input_photos {
-  display: none;
 }
 
 html.no-file-reader {
@@ -178,10 +176,11 @@ html.no-file-reader {
   right: 0;
   top: 0;
   width: 160px;
-  height: 35px;
+  height: 42px;
   background: #3f3f3f;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   @include transition(background-color 0.2s);
   -moz-border-radius: 20px;
