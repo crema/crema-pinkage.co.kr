@@ -63,3 +63,40 @@ form .input-image-container {
 .paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
   font-size: 13px;
 }
+
+.thumbnail-container .images-count-indicator, .reviews_index_gallery_review__thumbnail_container .images-count-indicator {
+  left: inherit;
+  right: 3px;
+  width: 3px;
+  height: 3px;
+  bottom: inherit;
+  top: 8px;
+  margin-top: 4px;
+
+  &.image-count-1 {
+    display: none;
+  }
+
+  &.image-count-2 {
+    width: 35px;
+    margin-right: 2px;
+  }
+
+  &.image-count-3 {
+    width: 52px;
+    margin-right: 0;
+  }
+
+  &.image-count-4 {
+    width: 66px;
+    margin-right: -1px;
+  }
+
+  .indicator-dot {
+    background: image-url('pc/reviews/pinkage-indicator-dot.png');
+    width: 8px;
+    height: 8px;
+    margin-left: 6px;
+    @include opacity(0.8);
+  }
+}
