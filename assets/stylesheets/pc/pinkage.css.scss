@@ -66,6 +66,45 @@ form .input-image-container {
   font-size: 13px;
 }
 
+.images-count-indicator {
+  position: absolute;
+  @include clearfix;
+  width: 13px;
+  left: 50%;
+  height: 6px;
+  margin-left: -8px;
+  bottom: 14px;
+
+  &.image-count-2 {
+    width: 45px;
+    margin-left: -13px;
+  }
+
+  &.image-count-3 {
+    width: 70px;
+    margin-left: -23px;
+  }
+
+  &.image-count-4 {
+    width: 90px;
+    margin-left: -29px;
+  }
+
+  .indicator-dot {
+    float: left;
+    background: image-url('pinkage-co-kr/pc/reviews/pinkage-indicator-dot.png');
+    width: 8px;
+    height: 8px;
+    margin-left: 14px;
+    @include opacity(0.5);
+    @include transition(opacity 0.2s);
+
+    &.selected {
+      @include opacity(0.9);
+    }
+  }
+}
+
 .thumbnail-container .images-count-indicator, .reviews_index_gallery_review__thumbnail_container .images-count-indicator {
   left: inherit;
   right: 3px;
