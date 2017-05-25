@@ -50,15 +50,15 @@ body.products.reviews #content {
 }
 
 .products_reviews_list__review_image_item {
-  width: 165px;
-  height: 165px;
-  margin: 0 13px;
+  width: 154px;
+  height: 154px;
+  margin: 0 17px;
 }
 
 .products_reviews_list__review_image_item--last_review_item {
   position: relative;
   text-align: center;
-  line-height: 165px;
+  line-height: 154px;
   font-size: 13px;
   font-weight: bold;
 }
@@ -76,7 +76,7 @@ body.products.reviews #content {
 
 .products_reviews_list__thumbnail_back_scroll {
   position: absolute;
-  top: 75px;
+  top: 60px;
   left: -25px;
   cursor: pointer;
   font-size: 20px;
@@ -84,7 +84,7 @@ body.products.reviews #content {
 
 .products_reviews_list__thumbnail_forward_scroll {
   position: absolute;
-  top: 75px;
+  top: 60px;
   right: -25px;
   cursor: pointer;
   font-size: 20px;
