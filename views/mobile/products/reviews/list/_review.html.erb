@@ -15,7 +15,7 @@ end
 <%= content_tag_for(
   :li,
   review,
-  class: "review_list review_list--#{review_list_status} review_list--pinkage",
+  class: "review_list review_list--#{review_list_status} review_list--pinkage panel-review",
   data: {message_initial_rows: widget.message_initial_rows}
 ) do %>
   <% if brand.review_show_score && review.score %>
@@ -82,7 +82,7 @@ end
       <div class="review_like_action">
         <%= content_tag :div, class: "like-action #{(like.score > 0 ? 'liked' : 'unliked') if likes}", data: {url: like_mobile_review_path(review)} do %>
           <div class="review_like_action__label">
-            <span>좋아요 <%= review.total_score %>개</span>
+            <span>좋아요 <strong class="total"><%= review.total_score %></strong>개</span>
             <span class="review_like_action__comments_count">댓글 <%= review.comments_count %>개</span>
           </div>
           <div class="likable">
