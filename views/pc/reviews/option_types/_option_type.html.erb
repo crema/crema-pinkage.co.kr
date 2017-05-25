@@ -1,0 +1,11 @@
+<%= content_tag_for :li, option_type do %>
+  <%= content_tag :a, class: 'review_option_type__link link-review-option-type' do %>
+    <%= content_tag :div, option_type.name, class: 'review_option_type__name type-name', title: option_type.name %>
+    <div class="review_option_type__dropdown_button">
+      <i class="review_option_type__icon sprites-pinkage-dropdown"></i>
+    </div>
+  <% end %>
+  <%= content_tag :div, class: "dropdown-menu #{'nonlast-option' if review_option_types_count != option_type_counter + 1} dialog-iframe-height" do %>
+    <%= render "reviews/option_types/search_#{ReviewOptionFieldType.key_string(option_type.field_type)}", option_type: option_type %>
+  <% end %>
+<% end %>

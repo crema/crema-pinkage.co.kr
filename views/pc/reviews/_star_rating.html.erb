@@ -1,0 +1,8 @@
+<% return unless brand.review_show_score %>
+<%= content_tag :div, class: "star-rating-container #{local_assigns[:klass]}" do %>
+  <% (1..5).each do |i| %>
+    <div class="pinkage_star">
+      <%= content_tag :span, nil, class: review.score && i > review.score ? 'sprites-pinkage-star-empty' : 'sprites-pinkage-star' %>
+    </div>
+  <% end %>
+<% end %>

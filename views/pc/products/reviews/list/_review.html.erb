@@ -61,7 +61,9 @@ is_my_last_review = my_last_review?(review) if local_assigns[:is_my_last_review]
           <% if brand.review_show_score %>
             <%= content_tag :div, class: "products_reviews_list_review__star_rating_container #{local_assigns[:star_rating_class]}" do %>
               <% (1..5).each do |i| %>
-                <%= content_tag :span, nil, class: "star #{'star-empty' if review.score && i > review.score} products_reviews_list_review__star" %>
+                <div class="pinkage_star">
+                  <%= content_tag :span, nil, class: "#{review.score && i > review.score ? 'sprites-pinkage-star-empty' : 'sprites-pinkage-star'} products_reviews_list_review__star" %>
+                </div>
               <% end %>
             <% end %>
           <% end %>

@@ -1,0 +1,11 @@
+<div class="star-rating-container">
+  <% (1..5).each do |i| %>
+    <div class="pinkage_star">
+      <% if !score || i <= score %>
+        <span class="sprites-pinkage-star"></span>
+      <% else %>
+        <span class="sprites-pinkage-star-empty"></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
