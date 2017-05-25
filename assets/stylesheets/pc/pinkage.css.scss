@@ -16,6 +16,16 @@
   position: absolute;
 }
 
+.sprites-icon-camera {
+  vertical-align: middle;
+  background-image: url(//dassets.cre.ma/latte/assets/pinkage-co-kr/pc/sprites.png);
+  background-repeat: no-repeat;
+  width: 37px;
+  height: 30px;
+  background-position: -11px -448px;
+  margin-top: 0 !important;
+}
+
 .popup_new form .input-image-container {
   top: 73% !important;
 }
@@ -24,6 +34,6 @@ form .input-image-container {
   top: 65% !important;
 }
 
-form .input-image-container .add-image-caption {
+.product_reviews_list .input-image-container .add-image-caption {
   margin-top: 6px;
 }
