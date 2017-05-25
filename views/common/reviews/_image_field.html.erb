@@ -1,0 +1,40 @@
+<%
+input_image_args = local_assigns[:input_image_args] || {}
+template = false if !local_assigns[:template]
+image_attribute = "image#{image_position}" unless template
+%>
+<li class="image-field">
+  <div class="wrap">
+    <%= image_tag(manual_asset_url('widgets/transparent.png'), class: 'size-support') %>
+    <div class="input-image-container on-list">
+      <span class="sprites-pinkage-camera inline"></span>
+      <div class="add-image-caption">SELECT</div>
+    </div>
+    <% if template %>
+      <%= file_field_tag 'review[images][]', id: nil, class: 'input-file', accept: 'image/*', multiple: browser.supports_file_reader?, data: {upload_image_url: upload_preview_images_url} %>
+      <div class="preview-container hidden">
+        <img class="preview" alt="preview">
+        <div class="image_field__remove_preview remove-preview hoverable">
+          <%= content_tag :div, t('review_image_field.remove_photo') %>
+        </div>
+      </div>
+    <% else %>
+      <% image = review.image(image_position) %>
+      <% image_url = image ? image.url(:thumbnail) : nil %>
+      <% if image_url.present? %>
+        <%= hidden_field_tag 'review[images][]', review[image_attribute], class: 'input-file', id: nil %>
+      <% else %>
+        <%= file_field_tag 'review[images][]', class: 'input-file', accept: 'image/*', multiple: browser.supports_file_reader?, data: input_image_args.merge(upload_image_url: upload_preview_images_url), id: nil %>
+      <% end %>
+
+      <%= content_tag :div, class: "preview-container #{'hidden' if image_url.blank?}" do %>
+        <% if image_url %>
+          <%= image_tag(image_url, class: 'preview', width: 75, height: 75) %>
+        <% else %>
+          <img class="preview" alt="preview">
+        <% end %>
+        <div class="image_field__remove_preview remove-preview hoverable"><%= content_tag :div, t('review_image_field.remove_photo'), class: 'remove' %></div>
+      <% end %>
+    <% end %>
+  </div>
+</li>
