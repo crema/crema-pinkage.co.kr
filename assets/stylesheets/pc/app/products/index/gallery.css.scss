@@ -200,29 +200,3 @@ $products_index_gallery__select_price_width: 150px;
   margin-top: -6px;
   left: 32px;
 }
-
-.products_index_gallery__foot {
-  text-align: center;
-
-  a.first, a.last {
-    display: none;
-  }
-
-  .paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
-    border: 0;
-    color: #A5A5A5;
-  }
-
-  .paging_full_numbers a.paginate_active {
-    color: #353535;
-    background: white;
-  }
-
-  .paginate_button_disabled, .paginate_button_disabled:active {
-    background: white !important;
-  }
-
-  .paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
-    font-size: 13px;
-  }
-}

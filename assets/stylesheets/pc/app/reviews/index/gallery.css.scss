@@ -299,26 +299,3 @@
     @include opacity(0.8);
   }
 }
-
-.reviews_index_gallery__footer {
-  text-align: center;
-  padding-top: 25px;
-
-  a.first, a.last {
-    display: none;
-  }
-
-  .paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
-    border: 0;
-    color: #A5A5A5;
-  }
-
-  .paging_full_numbers a.paginate_active {
-    color: #353535;
-    background: white;
-  }
-
-  .paginate_button_disabled, .paginate_button_disabled:active {
-    background: white !important;
-  }
-}

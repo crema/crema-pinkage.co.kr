@@ -1,0 +1,13 @@
+<% return unless product_reviews.total_pages > 1 %>
+<div class="widget-footer">
+  <% if product_reviews.total_pages > 1 %>
+    <%
+    args = {
+      window: 3,
+      remote: true,
+      params: {aloading: '.page'}
+    }
+    %>
+    <%= paginate(product_reviews, args) %>
+  <% end %>
+</div>
