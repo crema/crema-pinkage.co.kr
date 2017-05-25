@@ -3,15 +3,6 @@
   <%= content_tag :div, class: "widget widget-reviews pagination-list" do %>
     <div>
       <div class="reviews_index_gallery__menu">
-        <div class="reviews_index_gallery__search_container">
-          <a class="top_menu__submit"><span class="sprites-search"></span></a>
-          <%= form_tag url_for(params.except(:page).merge(aloading: '.page')), class: 'menu-search', method: :get, remote: true do %>
-            <%= text_field_tag('query', @query, placeholder: '원하는 단어를 검색하세요', autocomplete: 'off', class: 'top_menu__query') %>
-          <% end %>
-          <%= link_to url_for(params.except(:query, :page).merge(aloading: '.page')), class: "top_menu__remove_query #{'top_menu__remove_query--has_query' if @query.present?}", remote: true do %>
-            <span class="fa fa-times-circle"></span>
-          <% end %>
-        </div>
         <ul class="reviews_index_gallery__filters_container">
           <li class="reviews_index_gallery__sort_container">
             <%= select_tag(
@@ -29,6 +20,15 @@
               class: 'select2',
               data: {url: ajax_path(aloading: '.page', except: [:category_id])}
             ) %>
+          </li>
+          <li class="reviews_index_gallery__search_container">
+            <a class="top_menu__submit"><span class="sprites-search"></span></a>
+            <%= form_tag url_for(params.except(:page).merge(aloading: '.page')), class: 'menu-search', method: :get, remote: true do %>
+              <%= text_field_tag('query', @query, placeholder: '원하는 단어를 검색하세요', autocomplete: 'off', class: 'top_menu__query') %>
+            <% end %>
+            <%= link_to url_for(params.except(:query, :page).merge(aloading: '.page')), class: "top_menu__remove_query #{'top_menu__remove_query--has_query' if @query.present?}", remote: true do %>
+              <span class="fa fa-times-circle"></span>
+            <% end %>
           </li>
         </ul>
       </div>
