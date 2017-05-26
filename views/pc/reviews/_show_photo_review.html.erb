@@ -1,5 +1,5 @@
 <% content_for :content do %>
-  <div class="show_photo_review show_review is_photo fullscreen_popup review">
+  <%= content_tag :div, class: 'show_photo_review show_review is_photo fullscreen_popup review review-content', id: "review_#{review.id}"  do %>
     <div class="fullscreen_popup__background ie-png-fix"></div>
     <div id="photo-popup-container" class="fullscreen_popup__content_container">
       <div id="photo-popup-content" class="ie-opacity-fix fullscreen_popup__content">
@@ -47,5 +47,5 @@
     </div>
     <%= render 'shared/fullscreen_popup/close' %>
     <%= render 'shared/crema_review_watermark' %>
-  </div>
+  <% end %>
 <% end %>

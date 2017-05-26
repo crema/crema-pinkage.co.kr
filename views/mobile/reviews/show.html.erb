@@ -17,7 +17,7 @@
   </div>
 <% end %>
 <% content_for :content do %>
-  <div class="panel panel-review">
+  <div class="panel panel-review review-content">
     <div class="reviews_show__author_info">
       <div class="reviews_show__author_name"><%= review.user_display_name %></div>
       <div class="reviews_show__star_rating">
@@ -82,7 +82,7 @@
           <%= content_tag :div, class: "like-action #{(like.score > 0 ? 'liked' : 'unliked') if likes}", data: {url: like_mobile_review_path(review)} do %>
             <div class="review_like_action__label">
               <span>좋아요 <strong class="total"><%= review.total_score %></strong>개</span>
-              <span class="review_like_action__comments_count">댓글 <%= review.comments_count %>개</span>
+              <span class="review_like_action__comments_count">댓글 <strong class="comments-count"><%= review.comments_count %></strong>개</span>
             </div>
             <div class="likable">
               <a class="link-like review_link_action__like_button">
