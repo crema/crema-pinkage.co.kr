@@ -1,0 +1,8 @@
+var $comment = $("#comment_<%= @tracking_id %>");
+<% if @comment.errors.empty? %>
+  $comment.closest(".review-content").find(".comments-count").text("<%= @comments_count %>");
+  $comment.after("<%=j render @comment, formats: :html %>").remove();
+<% else %>
+  $comment.remove();
+  alert("<%= @comment.errors.messages[:message].first %>");
+<% end %>
