@@ -4,15 +4,29 @@
 <div class="gallery_product__section gallery_product__review_summary">
   <%= link_to reviews_mobile_products_url(product_code: product.code), class: 'gallery_product__section_link', data: {link_target: 'window'} do %>
     <div class="gallery_product__review_summary_average_score"><%= product.display_score %></div>
-    <div class="gallery_product__review_summary_reviews_count">
-      <%
-      if reviews_count_map.present?
-        count = reviews_count_map[product.id]
-      else
-        count = reviews_count
-      end
-      %>
-      <span class="gallery_product__review_summary_reviews_count_title">REVIEW</span> <%= count %>
+    <div class="gallery_product__review_summary_reviews_count_and_icon">
+      <div class="gallery_product__review_summary_average_score_icon">
+        <% score = product.meta_score.round %>
+        <div class="gallery_product__star_rating_container">
+          <% (1..5).each do |i| %>
+            <% if !score || i <= score %>
+              <i class="fa star gallery_product__star_rating_pinkage_star"></i>
+            <% else %>
+              <i class="fa unstar gallery_product__star_rating_pinkage_star"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="gallery_product__review_summary_reviews_count">
+        <%
+        if reviews_count_map.present?
+          count = reviews_count_map[product.id]
+        else
+          count = reviews_count
+        end
+        %>
+        <span class="gallery_product__review_summary_reviews_count_title">REVIEW</span> <%= count %>
+      </div>
     </div>
   <% end %>
 </div>
