@@ -143,3 +143,12 @@ form .input-image-container {
     @include opacity(0.8);
   }
 }
+
+#review-edit-form #edit-form-container {
+  width: 52.5% !important;
+}
+
+.edit-comment-container {
+  top: 2px !important;
+  right: 50px !important;
+}
