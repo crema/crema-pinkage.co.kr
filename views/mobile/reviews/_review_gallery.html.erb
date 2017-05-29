@@ -19,7 +19,7 @@
       <div class="section section-review section-review--no_border">
         <div class="review-author-info">
           <div class="review-title">
-            <%= review.message.limit(max_bytes_per_line: 20, max_lines: 3, ellipsis: '...', flatten: true) %>
+            <%= review.message.limit(max_bytes_per_line: 28, max_lines: 3, ellipsis: '...', flatten: true) %>
           </div>
           <div class="date-name-container <%= 'show-created-at' if @brand.review_show_created_at %>">
             <div class="author-name">

@@ -15,7 +15,7 @@
     <div class="reviews_index_gallery_review__author_info">
       <div class="reviews_index_gallery_review__title">
         <%= content_tag :span, review_position, class: 'review-position-placeholder' if @first_review_position_in_page %>
-        <%= review.message.limit(max_bytes_per_line: 46, max_lines: 2, ellipsis: '...', flatten: true) %>
+        <%= review.message.limit(max_bytes_per_line: 84, max_lines: 2, ellipsis: '...', flatten: true) %>
       </div>
     </div>
   <% end %>
