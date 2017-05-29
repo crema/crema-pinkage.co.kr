@@ -7,7 +7,7 @@
     <div class="reviews_index_gallery_review__thumbnail_container">
       <ul>
         <li class="reviews_index_gallery_review__review_image_thumbnail">
-          <%= image_tag review.image(1).url(:portrait), class: 'reviews_index_gallery_review__review_image smooth', alt: review.title %>
+          <%= image_tag review.image(1).url(:gallery), class: 'reviews_index_gallery_review__review_image smooth', alt: review.title %>
         </li>
       </ul>
       <%= render 'shared/images_indicator', images_count: review.images_count %>
