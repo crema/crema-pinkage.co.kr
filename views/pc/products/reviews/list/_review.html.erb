@@ -6,7 +6,7 @@ is_my_last_review = my_last_review?(review) if local_assigns[:is_my_last_review]
   <div class="products_reviews_list_review__info_container">
     <ul>
       <li class="products_reviews_list_review__info">
-        <div class="products_reviews_list_review__info_title"><%= t('products.reviews.author_title') %>s</div>
+        <div class="products_reviews_list_review__info_title"><%= t('products.reviews.author_title') %></div>
         <div class="products_reviews_list_review__info_value"><%= review.user_display_name %></div>
       </li>
       <% if @brand.review_show_created_at %>
