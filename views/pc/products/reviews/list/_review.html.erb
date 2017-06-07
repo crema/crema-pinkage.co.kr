@@ -1,0 +1,125 @@
+<%
+message_initial_rows = widget.message_initial_rows == 0 ? 3 : widget.message_initial_rows
+is_my_last_review = my_last_review?(review) if local_assigns[:is_my_last_review].nil?
+%>
+<%= content_tag_for :li, review, class: "products_reviews_list_review #{'product-my-first-review' if is_my_last_review}", data: {expand_url: expand_review_path(review.id, widget_env: widget_env, widget_id: widget.id)} do %>
+  <div class="products_reviews_list_review__info_container">
+    <ul>
+      <li class="products_reviews_list_review__info">
+        <div class="products_reviews_list_review__info_title"><%= t('products.reviews.author_title') %></div>
+        <div class="products_reviews_list_review__info_value"><%= review.user_display_name %></div>
+      </li>
+      <% if @brand.review_show_created_at %>
+        <li class="products_reviews_list_review__info">
+          <div class="products_reviews_list_review__info_title"><%= t('products.reviews.posted_at_title') %></div>
+          <div class="products_reviews_list_review__info_value"><%= review.created_at.strftime("%Y. %-m. %-d") %></div>
+        </li>
+      <% end %>
+      <% case @brand.review_author_display_type %>
+      <% when ReviewAuthorDisplayType::AUTHOR_TYPE %>
+        <li class="products_reviews_list_review__info">
+          <div class="products_reviews_list_review__info_title"><%= t('products.reviews.author_grade_title') %></div>
+          <div class="products_reviews_list_review__info_value">
+            <% if review.brand_author_type %>
+              <%= review.brand_author_type.title %>
+            <% elsif review.pinned_to_top? %>
+              <span class="fa fa-bookmark"></span> <%= t('products.reviews.best_review') %>
+            <% else %>
+              <%= review.writer_type %>
+            <% end %>
+          </div>
+        </li>
+      <% when ReviewAuthorDisplayType::USER_GRADE %>
+        <% if review.brand_user_grade_name.present? %>
+          <li class="products_reviews_list_review__info">
+            <div class="products_reviews_list_review__info_title"><%= t('products.reviews.user_grade_title') %></div>
+            <div class="products_reviews_list_review__info_value">
+              <%= review.brand_user_grade_name %>
+            </div>
+          </li>
+        <% end %>
+        <% if review.pinned_to_top? %>
+          <li class="products_reviews_list_review__info">
+            <div class="products_reviews_list_review__info_title"><%= t('products.reviews.review_grade_title') %></div>
+            <%= content_tag :span, nil, class: 'fa fa-bookmark', title: t('products.reviews.best_review') %> <div class="products_reviews_list_review__info_value"><%= t('products.reviews.best_review') %></div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <%= content_tag :div, class: "l-contents panel #{'photo-review' if review.images_count > 0}" do %>
+    <div class="panel-heading no-border score ">
+      <div class="products_reviews_list_review__star_wrap">
+        <% if review.brand_author_type && review.brand_author_type[:image] %>
+          <%= content_tag :div, class: 'brand-author-type-image-container', style: "margin-top: #{(14.0 - review.brand_author_type.image.dimension[1]) * 0.5}px" do %>
+            <%= image_tag review.brand_author_type.image_url %>
+          <% end %>
+          <div class="divider">|</div>
+        <% end %>
+        <% if @brand.review_show_score %>
+          <%= content_tag :div, ReviewScore.t(review.score || ReviewScore::BEST), class: "products_reviews_list_review__score_text #{local_assigns[:text_rating_class]}" %>
+          <% if brand.review_show_score %>
+            <%= content_tag :div, class: "products_reviews_list_review__star_rating_container #{local_assigns[:star_rating_class]}" do %>
+              <% (1..5).each do |i| %>
+                <div class="pinkage_star">
+                  <%= content_tag :span, nil, class: "#{review.score && i > review.score ? 'sprites-pinkage-star-empty' : 'sprites-pinkage-star'} products_reviews_list_review__star" %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= content_tag :div, class: "like-result #{'like-result--no_likes' if review.likes_count.zero?}" do %>
+           <%= t('reviews.how_many_people_thought_helpful_html', likes_count: review.likes_count, plus_likes_count: review.plus_likes_count) %>
+          <% end %>
+        <% end %>
+
+        <% photo_tag = !widget.show_image_when_collapsed %>
+        <div class="products_reviews_list_review__review_tag">
+          <% if photo_tag && review.photo? %>
+            <div class="review-tag review-tags__camera">
+              <% w, h = widget.camera_icon.dimension %>
+              <%= image_tag(
+                widget.camera_icon_url,
+                width: w,
+                height: h,
+                class: 'review-tags__camera_img',
+                title: t('reviews.review_has_photo')
+              ) %>
+            </div>
+          <% end %>
+          <% if review.new? %>
+            <%= content_tag :span, 'NEW', class: 'review-tag new-tag', title: t('reviews.review_written_recently') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= content_tag :div, class: "review-content #{'expanded' if widget.message_initial_rows == 0} products_reviews_list_review__review_content" do %>
+      <%= content_tag(:div, t('products.reviews.my_last_review', user: review.user_display_name), class: 'my-first-review') if is_my_last_review %>
+      <div class="review-content-inner review-content-collapsed">
+        <div class="panel-body no-border">
+          <a class="message link-expand">
+            <div class="review_message review_message--collapsed review_message--collapsed<%= message_initial_rows %> products_reviews_list_review__review_message">
+              <% if widget.review_message_all_collapsed? %>
+                <% show_see_more = true %>
+                <%= widget.collapsed_title %>
+              <% else %>
+                <% show_see_more = !widget.show_image_when_collapsed && review.images_count > 0 %>
+                <%= review.message_with_prefix(tag: true) %>
+              <% end %>
+            </div>
+            <%= content_tag(
+              :div,
+              t('reviews.see_more'),
+              class: "mall-link-color see-more #{'see-more--force-show' if show_see_more} products_reviews_list_review__see_more",
+            ) %>
+          </a>
+          <%= render('reviews/images', review: review) if widget.show_image_when_collapsed %>
+        </div>
+        <%= render 'reviews/review_footer', review: review, show_comments: false %>
+      </div>
+      <div class="review-content-inner review-content-expanded">
+        <%= render 'reviews/review_content_expanded', review: review %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
