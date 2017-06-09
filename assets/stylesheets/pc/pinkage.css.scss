@@ -2,10 +2,15 @@
 @import "compass/css3/opacity";
 @import "compass/css3/transition";
 
-.sprites-pinkage-dropdown {
+.select2-container .select2-choice .sprites-pinkage-dropdown {
   position: absolute;
   top: 9px;
   right: 0;
+}
+
+.menu .select2-container#s2id_sort .select2-choice .sprites-pinkage-dropdown {
+  top: 22px;
+  right: 15px;
 }
 
 .pinkage_star {
@@ -22,7 +27,7 @@
 
 .sprites-icon-camera {
   vertical-align: middle;
-  background-image: url(//dassets.cre.ma/latte/assets/pinkage-co-kr/pc/sprites.png);
+  background-image: url('//dassets.cre.ma/latte/assets/pinkage-co-kr/pc/sprites.png');
   background-repeat: no-repeat;
   width: 37px;
   height: 30px;
@@ -158,4 +163,18 @@ form .input-image-container {
   padding: 8px 10px !important;
   height: 26px !important;
   width: 300px !important;
+}
+
+li.review {
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.products_reviews_list_header {
+  border-bottom: none;
+}
+
+.reviews_index__review_options_search {
+  border-bottom: 1px solid #dadada;
 }
