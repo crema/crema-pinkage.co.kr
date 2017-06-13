@@ -25,7 +25,7 @@
       :div,
       class: 'reviews_index_gallery_review__product link-product link-iframe',
       data: {url: review.product_url || (review.product ? review.product.url : nil)}
-    do %>
+    ) do %>
       <div class="reviews_index_gallery__product_thumbnail">
         <%= image_tag review.product_image_url, class: 'reviews_index_gallery_review__product_image', alt: review.product_name, width: 90, height: 90 %>
       </div>
