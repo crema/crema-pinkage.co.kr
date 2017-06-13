@@ -1,4 +1,4 @@
-<%= content_tag_for :li, review, class: "reviews_index_gallery_review #{'reviews_index_gallery_review--no_margin_right' if review_counter % 4 == 3}", data: {product_url: review.product_url || (review.product ? review.product.url : nil)} do %>
+<%= content_tag_for :li, review, class: "reviews_index_gallery_review #{'reviews_index_gallery_review--no_margin_right' if review_counter % 4 == 3}" do %>
   <% product = review.product %>
   <% review_position = @first_review_position_in_page - review_counter if @first_review_position_in_page %>
   <%= content_tag :div, review_position, class: 'review-position' if @first_review_position_in_page %>
@@ -15,13 +15,17 @@
     <div class="reviews_index_gallery_review__author_info">
       <div class="reviews_index_gallery_review__title">
         <%= content_tag :span, review_position, class: 'review-position-placeholder' if @first_review_position_in_page %>
-        <%= review.message.limit(max_bytes_per_line: 46, max_lines: 2, ellipsis: '...', flatten: true) %>
+        <%= review.message.limit(max_bytes_per_line: 76, max_lines: 2, ellipsis: '...', flatten: true) %>
       </div>
     </div>
   <% end %>
 
   <% if product %>
-    <div class="reviews_index_gallery_review__product link-product">
+    <%= content_tag(
+      :div,
+      class: 'reviews_index_gallery_review__product link-product link-iframe',
+      data: {url: review.product_url || (review.product ? review.product.url : nil)}
+    do %>
       <div class="reviews_index_gallery__product_thumbnail">
         <%= image_tag review.product_image_url, class: 'reviews_index_gallery_review__product_image', alt: review.product_name, width: 90, height: 90 %>
       </div>
@@ -46,7 +50,7 @@
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% else %>
     <div class="reviews_index_gallery_review__product"></div>
   <% end %>
