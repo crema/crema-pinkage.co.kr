@@ -27,36 +27,38 @@
             <i class="fa fa-heart products_reviews_list__likes_icon"></i>
             <span class="products_reviews_list__likes_value"><%= product_reviews_summary.count %></span>명이 이 제품을 좋아합니다.
           </div>
-          <div class="products_reviews_list__thumbnails_container">
-            <div id="lista" class="als-container">
-              <span class="als-prev">
-                <span class="products_reviews_list__thumbnail_back_scroll sprites-pinkage-navigator-left"></span>
-              </span>
-              <div class="products_reviews_list__thumbnails als-viewport">
-                <ul class="als-wrapper">
-                  <% review_images.each_with_index do |review_image, i| %>
-                    <li class="products_reviews_list__review_image_item als-item">
-                      <%= content_tag(
-                        :a,
-                        class: 'link-fullscreen-popup',
-                        data: {
-                          url: photo_review_popup_review_path(review_image.model)
-                        }
-                      ) do %>
-                        <%= image_tag review_image.url(:thumbnail), class: 'products_reviews_list__review_image smooth' %>
-                      <% end %>
-                    </li>
-                  <% end %>
-                  <% if review_images.count == 1 %>
-                    <li class="als-item" style="pointer-events: none;"></li>
-                  <% end %>
-                </ul>
+          <% if review_images.first != :placeholder %>
+            <div class="products_reviews_list__thumbnails_container">
+              <div id="lista" class="als-container">
+                <span class="als-prev">
+                  <span class="products_reviews_list__thumbnail_back_scroll sprites-pinkage-navigator-left"></span>
+                </span>
+                <div class="products_reviews_list__thumbnails als-viewport">
+                  <ul class="als-wrapper">
+                    <% review_images.each_with_index do |review_image, i| %>
+                      <li class="products_reviews_list__review_image_item als-item">
+                        <%= content_tag(
+                          :a,
+                          class: 'link-fullscreen-popup',
+                          data: {
+                            url: photo_review_popup_review_path(review_image.model)
+                          }
+                        ) do %>
+                          <%= image_tag review_image.url(:thumbnail), class: 'products_reviews_list__review_image smooth' %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                    <% if review_images.count == 1 %>
+                      <li class="als-item" style="pointer-events: none;"></li>
+                    <% end %>
+                  </ul>
+                </div>
+                <span class="als-next">
+                  <span class="products_reviews_list__thumbnail_forward_scroll sprites-pinkage-navigator-right"></span>
+                </span>
               </div>
-              <span class="als-next">
-                <span class="products_reviews_list__thumbnail_forward_scroll sprites-pinkage-navigator-right"></span>
-              </span>
             </div>
-          </div>
+          <% end %>
         </div>
         <% if display_write_form %>
           <div class="products_reviews_list__form">
