@@ -36,6 +36,7 @@
                 <div class="products_reviews_list__thumbnails als-viewport">
                   <ul class="als-wrapper">
                     <% review_images.each_with_index do |review_image, i| %>
+                      <% next if review_image == :placeholder %>
                       <li class="products_reviews_list__review_image_item als-item">
                         <%= content_tag(
                           :a,
