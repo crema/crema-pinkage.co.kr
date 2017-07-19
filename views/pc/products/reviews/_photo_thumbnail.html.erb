@@ -11,9 +11,9 @@
         <%= widget.title.html_safe %>
       </div>
       <div class="products_reviews_photo_thumbnail__summary">
-        <span>전체 리뷰 <strong class="products_reviews_photo_thumbnail__value"><%= number_with_delimiter(product.reviews_count) %></strong>개</span>
+        <span>전체 리뷰 <strong class="products_reviews_photo_thumbnail__value"><%= number_with_delimiter(product.meta_reviews_count) %></strong>개</span>
         <span class="products_reviews_photo_thumbnail__divider">|</span>
-        <span>포토 리뷰 <strong class="products_reviews_photo_thumbnail__value"><%= number_with_delimiter(product.photo_reviews_count) %></strong>개</span>
+        <span>포토 리뷰 <strong class="products_reviews_photo_thumbnail__value"><%= number_with_delimiter(product.meta_visible_reviews.with_photo.count) %></strong>개</span>
         <span class="products_reviews_photo_thumbnail__divider">|</span>
         <span>고객 만족도 <strong class="products_reviews_photo_thumbnail__value"><%= product.display_score %></strong></span>
       </div>
