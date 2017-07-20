@@ -3,7 +3,7 @@
     <% placeholder_text = t('reviews.comments.please_write_comments') %>
     <% is_iphone = browser.respond_to?(:device) ? browser.device.iphone? : browser.iphone? %>
     <% if is_iphone %>
-      <%= content_tag :a, placeholder_text, class: 'new-comments__input new-comments__input--button', data: {login_required: true} %>
+      <%= content_tag :a, placeholder_text, class: 'new-comments__input new-comments__input--button js-new-comments-input-button', data: {login_required: true} %>
       <%= f.hidden_field :message %>
     <% else %>
       <%= f.text_field :message, placeholder: placeholder_text, class: 'input-block new-comments__input', data: {login_required: true} %>
