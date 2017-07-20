@@ -52,7 +52,7 @@ form .input-image-container {
 }
 
 .paging_full_numbers a.first, a.last {
-  display: none;
+  display: none !important;
 }
 
 .paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
