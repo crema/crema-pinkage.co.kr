@@ -4,7 +4,7 @@
       <%= render review.comments if review.comments_count > 0 %>
     </ul>
     <% if @brand.review_enable_user_comments && allow_comment? %>
-      <div class="new-comments ie-opacity-fix comments__new_comment">
+      <div class="new-comments js-comments-container ie-opacity-fix comments__new_comment">
         <%= form_for Comment.new, url: comments_path, validate: true, remote: true, data: {login_required: true} do |f| %>
           <%= f.text_field :message, placeholder: t('comments.attributes.message.placeholder'), class: 'input-block', data: {login_required: true} %>
           <%= f.hidden_field :review_id, value: review.id %>
