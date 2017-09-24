@@ -35,7 +35,7 @@
   <% if @product %>
     <%= content_tag :div, class: "panel panel-reviews pagination-list panel-reviews--product #{'no-data' if @reviews.total_count == 0}" do %>
       <div class="products_reviews__head">
-        <%= link_to new_mobile_review_path(review_source: @review_source) do %>
+        <%= link_to new_mobile_review_path(product_id: @product.id, review_source: @review_source) do %>
           <div class="products_reviews__reviews_new_link">리뷰 작성하기</div>
         <% end %>
       </div>
