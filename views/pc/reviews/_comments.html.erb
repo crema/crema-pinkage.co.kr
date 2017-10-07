@@ -1,5 +1,5 @@
 <% if @brand.review_enable_user_comments || review.comments_count > 0 %>
-  <%= content_tag :div, class: "comments-container ie-opacity-fix #{'hidden' if !allow_comment? && review.comments_count == 0} products_reviews_list_review__comments_container" do %>
+  <%= content_tag :div, class: "comments-container js-comments-container ie-opacity-fix #{'hidden' if !allow_comment? && review.comments_count == 0} products_reviews_list_review__comments_container" do %>
     <ul>
       <%= render review.comments if review.comments_count > 0 %>
     </ul>
